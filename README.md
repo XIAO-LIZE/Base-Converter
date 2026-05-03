@@ -1,17 +1,19 @@
 # 进制转换器 Base-Converter
 
-🔢 实时进制转换工具 · 中英双语界面 · 纯Python标准库
+🔢 Real-time numeral system converter · Bilingual UI · Zero dependencies
+
+实时进制转换工具 · 中英双语界面 · 纯 Python 标准库
 
 ---
 
 ### ✨ 功能 Features
 
-- **实时转换** — 输入即转换，无需点击按钮
-- **四进制同屏** — 二进制 / 八进制 / 十进制 / 十六进制 同时显示
-- **中英双语** — 右上角一键切换中文 / English
-- **一键复制** — 每个结果旁有 📋 按钮，点击即复制
-- **二进制分组** — 每4位空格分隔，方便阅读
-- **零依赖** — 纯 tkinter + 标准库，无需 pip install
+- **Real-time Conversion** 实时转换 — Type and see results instantly, no button needed
+- **4 Bases at Once** 四进制同屏 — Binary / Octal / Decimal / Hexadecimal side by side
+- **Bilingual UI** 中英双语 — One-click toggle between 中文 and English (top-right button)
+- **One-click Copy** 一键复制 — 📋 copy button on each result row
+- **Bit Grouping** 二进制分组 — Binary formatted with spaces every 4 bits for readability
+- **Zero Dependencies** 零依赖 — Pure tkinter + Python stdlib, no `pip install` required
 
 ---
 
@@ -21,25 +23,27 @@
 python main.py
 ```
 
-或双击 `启动 Start.bat`
+Or double-click `启动 Start.bat`
+
+> Requires Python 3.6+ with tkinter (included by default on Windows/macOS)
 
 ---
 
-### 🎨 截图 Preview
+### 🎨 预览 Preview
 
-选择输入进制 → 输入数字 → 四列结果实时刷新
+Select input base → type a number → see all 4 bases update live
 
-| 二进制 | 八进制 | 十进制 | 十六进制 |
-|--------|--------|--------|----------|
-| 输入 BIN | 输入 OCT | 输入 DEC | 输入 HEX |
+| Binary 二进制 | Octal 八进制 | Decimal 十进制 | Hexadecimal 十六进制 |
+|---------------|-------------|----------------|---------------------|
+| Type in BIN   | Type in OCT | Type in DEC    | Type in HEX         |
 
 ---
 
 ### 🛠 技术栈 Tech Stack
 
-- Python 3
-- tkinter (标准库)
-- 零外部依赖
+- **Language:** Python 3
+- **GUI:** tkinter (standard library)
+- **Dependencies:** None — single file, runs anywhere
 
 ---
 
@@ -47,6 +51,6 @@ python main.py
 
 ```
 进制转换器 Base-Converter/
-├── main.py           # 主程序
-└── 启动 Start.bat    # 快速启动
+├── main.py           # Main application / 主程序
+└── 启动 Start.bat    # Quick launcher / 快速启动
 ```
