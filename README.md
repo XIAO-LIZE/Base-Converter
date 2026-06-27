@@ -1,19 +1,28 @@
-# 进制转换器 Base-Converter
+# 进制转换器 + ASCII 码表 Base-Converter
 
-🔢 Real-time numeral system converter · Bilingual UI · Zero dependencies
+🔢 Real-time numeral system converter + 📋 ASCII lookup table · Bilingual UI · Zero dependencies
 
-实时进制转换工具 · 中英双语界面 · 纯 Python 标准库
+实时进制转换 + ASCII 码查询 · 中英双语界面 · 纯 Python 标准库
 
 ---
 
 ### ✨ 功能 Features
 
-- **Real-time Conversion** 实时转换 — Type and see results instantly, no button needed
-- **4 Bases at Once** 四进制同屏 — Binary / Octal / Decimal / Hexadecimal side by side
-- **Bilingual UI** 中英双语 — One-click toggle between 中文 and English (top-right button)
-- **One-click Copy** 一键复制 — 📋 copy button on each result row
-- **Bit Grouping** 二进制分组 — Binary formatted with spaces every 4 bits for readability
-- **Zero Dependencies** 零依赖 — Pure tkinter + Python stdlib, no `pip install` required
+**进制转换**
+- **实时转换** — 输入即转换，无需点击按钮
+- **四进制同屏** — 二进制 / 八进制 / 十进制 / 十六进制 同时显示
+- **一键复制** — 每行结果带 📋 复制按钮
+- **二进制分组** — 每 4 位加空格，便于阅读
+
+**ASCII 码表**
+- **完整 0-127 码表** — 控制字符 + 可打印字符全覆盖
+- **字符 ↔ 编码互查** — 输入字符查编码，输入编码查字符
+- **实时搜索** — 按字符、十进制、十六进制、八进制、二进制或说明搜索
+- **中文全翻译** — 表头、说明、控制字符名称全部中文化
+
+**通用**
+- **中英双语** — 右上角一键切换，所有界面文字同步切换
+- **零依赖** — 纯 tkinter + Python 标准库，无需 pip install
 
 ---
 
@@ -23,19 +32,9 @@
 python main.py
 ```
 
-Or double-click `启动 Start.bat`
+或双击 `启动 Start.bat`
 
-> Requires Python 3.6+ with tkinter (included by default on Windows/macOS)
-
----
-
-### 🎨 预览 Preview
-
-Select input base → type a number → see all 4 bases update live
-
-| Binary 二进制 | Octal 八进制 | Decimal 十进制 | Hexadecimal 十六进制 |
-|---------------|-------------|----------------|---------------------|
-| Type in BIN   | Type in OCT | Type in DEC    | Type in HEX         |
+> 需要 Python 3.6+（tkinter 默认包含）
 
 ---
 
@@ -51,6 +50,7 @@ Select input base → type a number → see all 4 bases update live
 
 ```
 进制转换器 Base-Converter/
-├── main.py           # Main application / 主程序
-└── 启动 Start.bat    # Quick launcher / 快速启动
+├── main.py            # 主程序
+├── 启动 Start.bat     # 快速启动
+└── README.md
 ```
