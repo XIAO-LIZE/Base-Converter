@@ -1,56 +1,51 @@
-# 进制转换器 + ASCII 码表 Base-Converter
+# Base Converter / 进制转换器
 
-🔢 Real-time numeral system converter + 📋 ASCII lookup table · Bilingual UI · Zero dependencies
+English | [简体中文](README.zh-CN.md)
 
-实时进制转换 + ASCII 码查询 · 中英双语界面 · 纯 Python 标准库
+A small tkinter tool with two tabs, one for base conversion and one for an ASCII table. Bilingual UI, standard library only.
 
----
+## Base conversion
 
-### ✨ 功能 Features
+Type in the box and the conversion happens as you type. Binary, octal, decimal and hexadecimal results sit side by side.
 
-**进制转换**
-- **实时转换** — 输入即转换，无需点击按钮
-- **四进制同屏** — 二进制 / 八进制 / 十进制 / 十六进制 同时显示
-- **一键复制** — 每行结果带 📋 复制按钮
-- **二进制分组** — 每 4 位加空格，便于阅读
+Copy a result by clicking the button on its row, or by clicking the number itself. On success the button turns into ✓ and the title area shows "Copied Binary".
 
-**ASCII 码表**
-- **完整 0-127 码表** — 控制字符 + 可打印字符全覆盖
-- **字符 ↔ 编码互查** — 输入字符查编码，输入编码查字符
-- **实时搜索** — 按字符、十进制、十六进制、八进制、二进制或说明搜索
-- **中文全翻译** — 表头、说明、控制字符名称全部中文化
+The input side is forgiving, so a typo is easy to pin down.
 
-**通用**
-- **中英双语** — 右上角一键切换，所有界面文字同步切换
-- **零依赖** — 纯 tkinter + Python 标准库，无需 pip install
+- Binary gets a space every four bits, which keeps long values readable
+- Negatives are shown as sign + magnitude, so -5 reads -101 / -5 / -5, not two's complement
+- An invalid character is named, e.g. "G" is not a valid hexadecimal digit; with an empty box the characters the current base accepts are shown
+- The 0x41, 0b1010 and 0o17 prefixes are accepted, as are 1_000 and 1111 1111, so binary copied out of this tool can be pasted straight back in
+- Up to 10000 characters, with a message beyond that; a long result is only truncated on screen, copying still yields the full value
 
----
+## ASCII table
 
-### 🚀 使用 Usage
+The table covers 0 to 127. The header stays in place while the body scrolls.
 
-```bash
-python main.py
-```
+- Type a character and its codes appear on the right; several characters are listed one by one
+- Type a decimal code and the character appears, control codes written out as NUL, LF and friends
+- Characters, code values and the description column are all searchable, and the hit count is shown
+- A prefixed query is limited to the matching column: 0x41 only matches the hex column, 0b1010 only the binary one
+- Esc clears the search box, and Esc on the converter tab clears the input
 
-或双击 `启动 Start.bat`
+## Running
 
-> 需要 Python 3.6+（tkinter 默认包含）
+    python main.py
 
----
+Or double-click `启动 Start.bat`, which tries `pyw -3`, `pythonw`, `py -3` and `python` in turn, and points you back to this file if none of them exists.
 
-### 🛠 技术栈 Tech Stack
+Python 3.6+ is required. tkinter ships with Python and there is nothing to install with pip. The whole program is the single file main.py, so it runs wherever you copy it.
 
-- **Language:** Python 3
-- **GUI:** tkinter (standard library)
-- **Dependencies:** None — single file, runs anywhere
+## Notes
 
----
+The UI language follows the system: Chinese on a Chinese system, English anywhere else. The button in the top right switches at any time, and the table's description column follows along. On a HiDPI screen the window and its fonts stay sharp; on a small screen the window shrinks to fit. Searching and switching languages only update the parts of the table that changed instead of rebuilding it.
 
-### 📁 项目结构 Structure
+To add a language, drop another dictionary into `TR` and add that language's base names to `ADJ`.
 
-```
-进制转换器 Base-Converter/
-├── main.py            # 主程序
-├── 启动 Start.bat     # 快速启动
-└── README.md
-```
+## Files
+
+    main.py           the program
+    启动 Start.bat    launcher
+    .gitignore
+    README.md         this file
+    README.zh-CN.md   Chinese version
