@@ -300,7 +300,13 @@ Build, packaging and release instructions are in
 
 ## License
 
-This repository does not currently include a license file. Add a license before
-redistributing or reusing the code. PySide6/Qt have their own LGPLv3/GPL terms;
-see the Qt for Python licensing documentation before distributing bundled
-builds.
+This repository does not currently provide a license file. The source code
+remains under the author's copyright; contact the author if you need permission
+to reuse or redistribute it.
+
+The published Windows builds include third-party components under their own
+terms:
+
+- PySide6/Qt: LGPLv3/GPL. A build that bundles Qt must include the applicable
+  notices and comply with the LGPL requirements for replacing the Qt libraries.
+- Python: PSF License.

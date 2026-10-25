@@ -220,4 +220,9 @@ python -m unittest discover -s tests
 
 ## 许可证
 
-本仓库目前未包含许可证文件，分发或复用前请先添加许可证。PySide6/Qt 遵循 LGPLv3/GPL，分发打包版本前请阅读 Qt for Python 的许可说明。
+本仓库目前没有许可证文件，源码版权归作者所有；如需复用或再分发源码，请先联系作者获得许可。
+
+发布的 Windows 构建包含以下第三方组件，它们各自遵循：
+
+- PySide6/Qt：LGPLv3/GPL。分发包含 Qt 的构建时，需要保留相应许可声明，并遵守 LGPL 对 Qt 库可替换性的要求。
+- Python：PSF License。
