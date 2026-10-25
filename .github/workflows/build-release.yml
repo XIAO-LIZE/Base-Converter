@@ -1,0 +1,81 @@
+name: Build portable editions
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r "主版本_Main/requirements.txt"
+          python -m pip install pyinstaller
+
+      - name: Build main visual edition
+        run: python tools/build_glass.py
+
+      - name: Build single-file edition
+        run: python tools/build_light.py
+
+      - name: Package release assets
+        shell: pwsh
+        run: |
+          Compress-Archive -Path "dist/BaseConverter-Glass" -DestinationPath "BaseConverter-Glass-Windows.zip" -Force
+          Copy-Item "dist/BaseConverter-SingleFile.exe" "BaseConverter-SingleFile-Windows.exe" -Force
+
+          New-Item -ItemType Directory -Force -Path "release-src/main" | Out-Null
+          Copy-Item -LiteralPath "主版本_Main" -Destination "release-src/main" -Recurse -Force
+          Copy-Item -LiteralPath "core" -Destination "release-src/main/core" -Recurse -Force
+          Copy-Item -LiteralPath "README.md" -Destination "release-src/main/README.md" -Force
+          Copy-Item -LiteralPath "README.zh-CN.md" -Destination "release-src/main/README.zh-CN.md" -Force
+          Copy-Item -LiteralPath "CONTRIBUTING.md" -Destination "release-src/main/CONTRIBUTING.md" -Force
+          Copy-Item -LiteralPath "CONTRIBUTING.zh-CN.md" -Destination "release-src/main/CONTRIBUTING.zh-CN.md" -Force
+          Get-ChildItem -Path "release-src/main" -Recurse -Directory -Filter "__pycache__" | Remove-Item -Recurse -Force
+          Compress-Archive -Path "release-src/main/*" -DestinationPath "BaseConverter-Main-Source.zip" -Force
+
+          New-Item -ItemType Directory -Force -Path "release-src/single" | Out-Null
+          Copy-Item -LiteralPath "单文件版本_SingleFile" -Destination "release-src/single" -Recurse -Force
+          Copy-Item -LiteralPath "core" -Destination "release-src/single/core" -Recurse -Force
+          Copy-Item -LiteralPath "README.md" -Destination "release-src/single/README.md" -Force
+          Copy-Item -LiteralPath "README.zh-CN.md" -Destination "release-src/single/README.zh-CN.md" -Force
+          Copy-Item -LiteralPath "CONTRIBUTING.md" -Destination "release-src/single/CONTRIBUTING.md" -Force
+          Copy-Item -LiteralPath "CONTRIBUTING.zh-CN.md" -Destination "release-src/single/CONTRIBUTING.zh-CN.md" -Force
+          Get-ChildItem -Path "release-src/single" -Recurse -Directory -Filter "__pycache__" | Remove-Item -Recurse -Force
+          Compress-Archive -Path "release-src/single/*" -DestinationPath "BaseConverter-SingleFile-Source.zip" -Force
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: BaseConverter-Windows
+          path: |
+            BaseConverter-Glass-Windows.zip
+            BaseConverter-SingleFile-Windows.exe
+            BaseConverter-Main-Source.zip
+            BaseConverter-SingleFile-Source.zip
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            BaseConverter-Glass-Windows.zip
+            BaseConverter-SingleFile-Windows.exe
+            BaseConverter-Main-Source.zip
+            BaseConverter-SingleFile-Source.zip
+          generate_release_notes: true

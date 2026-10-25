@@ -3,3 +3,12 @@ __pycache__/
 .venv/
 *.egg-info/
 .DS_Store
+build/
+dist/
+*.spec
+.pytest_cache/
+.mypy_cache/
+*.log
+release-src/
+BaseConverter-*.zip
+BaseConverter-*-Windows.exe
