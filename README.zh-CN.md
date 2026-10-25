@@ -71,7 +71,7 @@ Windows 下可双击 `主版本_Main/启动_Start.bat`。启动器会优先选�
 ## 下载单个版本
 
 构建好的版本会发布到仓库的
-[Releases](https://github.com/XIAO-LIZE/-Base-Converter/releases) 页面。
+[Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) 页面。
 GitHub 的 “Download ZIP” 下载的是完整源码（两个版本都有）；如果只需要一个版本，
 请到 Releases 下载对应附件。
 

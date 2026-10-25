@@ -80,7 +80,7 @@ Keyboard shortcuts in the visual edition: `Ctrl+L` switches language.
 ## Downloads
 
 Published builds are attached to the repository's
-[Releases](https://github.com/XIAO-LIZE/-Base-Converter/releases) page. GitHub's
+[Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) page. GitHub's
 "Download ZIP" command downloads the complete source, which contains both
 editions; use a release asset when only one edition is needed.
 

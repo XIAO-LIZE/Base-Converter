@@ -3,7 +3,7 @@
 [English](CONTRIBUTING.md) | 简体中文
 
 本文面向开发者和维护者。普通用户不需要阅读本文，只需从
-[Releases](https://github.com/XIAO-LIZE/-Base-Converter/releases) 下载发布附件。
+[Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) 下载发布附件。
 
 ## 开发环境
 

@@ -4,7 +4,7 @@ English | [简体中文](CONTRIBUTING.zh-CN.md)
 
 This document is for developers and maintainers. End users do not need anything
 on this page: they only need a release asset from the
-[Releases](https://github.com/XIAO-LIZE/-Base-Converter/releases) page.
+[Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) page.
 
 ## Development setup
 
