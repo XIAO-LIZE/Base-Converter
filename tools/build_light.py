@@ -13,7 +13,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 
+def _use_utf8_stdio() -> None:
+    """Keep console output readable when paths contain non-ASCII characters."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError, OSError):
+            pass
+
+
 def main() -> int:
+    _use_utf8_stdio()
     try:
         import PyInstaller  # noqa: F401
     except ImportError:
