@@ -223,6 +223,7 @@ tools/build_glass.py                     PyInstaller onedir build for the visual
 .github/workflows/build-release.yml      CI: build and attach both editions to a release
 dist/                                    generated portable builds (ignored by git)
 README.md / README.zh-CN.md              user documentation
+LICENSE                                  MIT License
 CONTRIBUTING.md / CONTRIBUTING.zh-CN.md  build and release guide
 ```
 
@@ -300,9 +301,7 @@ Build, packaging and release instructions are in
 
 ## License
 
-This repository does not currently provide a license file. The source code
-remains under the author's copyright; contact the author if you need permission
-to reuse or redistribute it.
+Project code is licensed under the MIT License. See [LICENSE](LICENSE).
 
 The published Windows builds include third-party components under their own
 terms:

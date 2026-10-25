@@ -168,6 +168,7 @@ tools/build_glass.py                     主版本 PyInstaller onedir 打包脚�
 .github/workflows/build-release.yml      CI：构建两个版本并附加到 Release
 dist/                                    生成的便携版本（已被 git 忽略）
 README.md / README.zh-CN.md               用户文档
+LICENSE                                   MIT License
 CONTRIBUTING.md / CONTRIBUTING.zh-CN.md   构建与发布说明
 ```
 
@@ -220,7 +221,7 @@ python -m unittest discover -s tests
 
 ## 许可证
 
-本仓库目前没有许可证文件，源码版权归作者所有；如需复用或再分发源码，请先联系作者获得许可。
+本项目代码采用 MIT 许可证，详见 [LICENSE](LICENSE)。
 
 发布的 Windows 构建包含以下第三方组件，它们各自遵循：
 

@@ -36,6 +36,7 @@ jobs:
       - name: Package release assets
         shell: pwsh
         run: |
+          Copy-Item -LiteralPath "LICENSE" -Destination "dist/BaseConverter-Glass/LICENSE" -Force
           Compress-Archive -Path "dist/BaseConverter-Glass" -DestinationPath "BaseConverter-Glass-Windows.zip" -Force
           Copy-Item "dist/BaseConverter-SingleFile.exe" "BaseConverter-SingleFile-Windows.exe" -Force
 
@@ -44,6 +45,7 @@ jobs:
           Copy-Item -LiteralPath "core" -Destination "release-src/main/core" -Recurse -Force
           Copy-Item -LiteralPath "README.md" -Destination "release-src/main/README.md" -Force
           Copy-Item -LiteralPath "README.zh-CN.md" -Destination "release-src/main/README.zh-CN.md" -Force
+          Copy-Item -LiteralPath "LICENSE" -Destination "release-src/main/LICENSE" -Force
           Copy-Item -LiteralPath "CONTRIBUTING.md" -Destination "release-src/main/CONTRIBUTING.md" -Force
           Copy-Item -LiteralPath "CONTRIBUTING.zh-CN.md" -Destination "release-src/main/CONTRIBUTING.zh-CN.md" -Force
           Get-ChildItem -Path "release-src/main" -Recurse -Directory -Filter "__pycache__" | Remove-Item -Recurse -Force
@@ -54,6 +56,7 @@ jobs:
           Copy-Item -LiteralPath "core" -Destination "release-src/single/core" -Recurse -Force
           Copy-Item -LiteralPath "README.md" -Destination "release-src/single/README.md" -Force
           Copy-Item -LiteralPath "README.zh-CN.md" -Destination "release-src/single/README.zh-CN.md" -Force
+          Copy-Item -LiteralPath "LICENSE" -Destination "release-src/single/LICENSE" -Force
           Copy-Item -LiteralPath "CONTRIBUTING.md" -Destination "release-src/single/CONTRIBUTING.md" -Force
           Copy-Item -LiteralPath "CONTRIBUTING.zh-CN.md" -Destination "release-src/single/CONTRIBUTING.zh-CN.md" -Force
           Get-ChildItem -Path "release-src/single" -Recurse -Directory -Filter "__pycache__" | Remove-Item -Recurse -Force
