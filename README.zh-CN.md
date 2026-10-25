@@ -9,11 +9,25 @@
 
 [English](README.md) | 简体中文
 
-> **Windows 电脑没有安装 Python？** `.bat` 启动器面向已经安装 Python 的源码环境；
-> 普通用户请下载已发布的 Releases 附件：
-> `BaseConverter-SingleFile-Windows.exe`（单文件可执行程序）或
-> `BaseConverter-Glass-Windows.zip`（解压后运行 exe）。已发布的 Windows 附件
-> 内置 Python；主版本还内置了 Qt/PySide6。
+## 下载
+
+构建好的版本会发布到仓库的
+[Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) 页面。
+GitHub 的 “Download ZIP” 下载的是完整源码（两个版本都有）；如果只需要一个版本，
+请到 Releases 下载对应附件。
+
+| 需要的版本 | Release 附件 |
+| ---------- | ------------ |
+| 单文件版本，无需安装 Python | `BaseConverter-SingleFile-Windows.exe` |
+| 主版本，无需安装 Python | `BaseConverter-Glass-Windows.zip`（解压后运行 `BaseConverter-Glass.exe`） |
+| 只要单文件版本源码 | `BaseConverter-SingleFile-Source.zip` |
+| 只要主版本源码 | `BaseConverter-Main-Source.zip` |
+
+`.bat` 启动器和源码需要 Python；已发布的 Windows 附件已经内置 Python，主版本还内置 Qt/PySide6。
+
+源码包里都包含共享的 `core/` 文件夹。解压后，主版本先安装
+`主版本_Main/requirements.txt`，再运行 `python "主版本_Main/main.py"`；
+单文件版本直接运行 `python "单文件版本_SingleFile/main.py"`。
 
 ## 功能
 
@@ -47,7 +61,7 @@
 python -m pip install -r "主版本_Main/requirements.txt"
 ```
 
-## 运行
+## 从源码运行
 
 ### 单文件版本（tkinter）
 
@@ -67,27 +81,6 @@ python "主版本_Main/main.py"
 Windows 下可双击 `主版本_Main/启动_Start.bat`。启动器会优先选择已经安装 PySide6 的 Python 3.9+ 解释器；缺少依赖时会询问并通过 pip 安装 `主版本_Main/requirements.txt`。传 `--auto` 可自动确认。
 
 主版本快捷键：`Ctrl+L` 切换中英文。
-
-## 下载单个版本
-
-构建好的版本会发布到仓库的
-[Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) 页面。
-GitHub 的 “Download ZIP” 下载的是完整源码（两个版本都有）；如果只需要一个版本，
-请到 Releases 下载对应附件。
-
-| 需要的版本 | Release 附件 |
-| ---------- | ------------ |
-| 单文件版本，无需安装 Python | `BaseConverter-SingleFile-Windows.exe` |
-| 主版本，无需安装 Python | `BaseConverter-Glass-Windows.zip`（解压后运行 `BaseConverter-Glass.exe`） |
-| 只要单文件版本源码 | `BaseConverter-SingleFile-Source.zip` |
-| 只要主版本源码 | `BaseConverter-Main-Source.zip` |
-
-源码包里都包含共享的 `core/` 文件夹。解压后，主版本先安装
-`主版本_Main/requirements.txt`，再运行 `python "主版本_Main/main.py"`；
-单文件版本直接运行 `python "单文件版本_SingleFile/main.py"`。
-
-构建、发布和维护流程面向开发者，见
-[CONTRIBUTING.zh-CN.md](CONTRIBUTING.zh-CN.md)；普通用户无需阅读。
 
 ## 界面说明
 
@@ -175,7 +168,7 @@ tools/build_glass.py                     主版本 PyInstaller onedir 打包脚�
 .github/workflows/build-release.yml      CI：构建两个版本并附加到 Release
 dist/                                    生成的便携版本（已被 git 忽略）
 README.md / README.zh-CN.md               用户文档
-CONTRIBUTING.md / CONTRIBUTING.zh-CN.md   面向维护者的构建与发布说明
+CONTRIBUTING.md / CONTRIBUTING.zh-CN.md   构建与发布说明
 ```
 
 版本文件夹和启动器名称使用下划线代替空格，避免在 shell、脚本和 CI 中因空格

@@ -11,11 +11,28 @@ core and are stored in separate folders:
 
 English | [简体中文](README.zh-CN.md)
 
-> **Using Windows without Python?** The `.bat` launchers are intended for
-> source checkouts with Python installed. Download a published release asset
-> instead: `BaseConverter-SingleFile-Windows.exe` (single executable) or
-> `BaseConverter-Glass-Windows.zip` (extract and run the exe). The published
-> Windows assets bundle Python; the visual edition also bundles Qt/PySide6.
+## Downloads
+
+Published builds are attached to the repository's
+[Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) page. GitHub's
+"Download ZIP" command downloads the complete source, which contains both
+editions; use a release asset when only one edition is needed.
+
+| Requirement | Release asset |
+| ----------- | ------------- |
+| Single-file edition, no Python required | `BaseConverter-SingleFile-Windows.exe` |
+| Main visual edition, no Python required | `BaseConverter-Glass-Windows.zip` (extract, then run `BaseConverter-Glass.exe`) |
+| Single-file source only | `BaseConverter-SingleFile-Source.zip` |
+| Main visual source only | `BaseConverter-Main-Source.zip` |
+
+The `.bat` launchers and source files require Python. The published Windows
+assets bundle Python; the visual edition also bundles Qt/PySide6.
+
+Source-only archives include the shared `core/` folder. After extracting one,
+install the visual dependencies with
+`python -m pip install -r "主版本_Main/requirements.txt"` and run
+`python "主版本_Main/main.py"`; the single-file edition runs with
+`python "单文件版本_SingleFile/main.py"`.
 
 ## Features
 
@@ -50,7 +67,7 @@ the Qt runtime; install it with:
 python -m pip install -r "主版本_Main/requirements.txt"
 ```
 
-## Getting started
+## Running from source
 
 ### Single-file edition (tkinter)
 
@@ -76,29 +93,6 @@ offers to run `pip install -r requirements.txt` from the main visual edition
 folder. Pass `--auto` to accept the prompt automatically.
 
 Keyboard shortcuts in the visual edition: `Ctrl+L` switches language.
-
-## Downloads
-
-Published builds are attached to the repository's
-[Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) page. GitHub's
-"Download ZIP" command downloads the complete source, which contains both
-editions; use a release asset when only one edition is needed.
-
-| Requirement | Release asset |
-| ----------- | ------------- |
-| Single-file edition, no Python required | `BaseConverter-SingleFile-Windows.exe` |
-| Main visual edition, no Python required | `BaseConverter-Glass-Windows.zip` (extract, then run `BaseConverter-Glass.exe`) |
-| Single-file source only | `BaseConverter-SingleFile-Source.zip` |
-| Main visual source only | `BaseConverter-Main-Source.zip` |
-
-Source-only archives include the shared `core/` folder. After extracting one,
-install the visual dependencies with
-`python -m pip install -r "主版本_Main/requirements.txt"` and run
-`python "主版本_Main/main.py"`; the single-file edition runs with
-`python "单文件版本_SingleFile/main.py"`.
-
-Build and release instructions are for maintainers and are documented in
-[CONTRIBUTING.md](CONTRIBUTING.md). End users do not need them.
 
 ## Interface
 
@@ -229,7 +223,7 @@ tools/build_glass.py                     PyInstaller onedir build for the visual
 .github/workflows/build-release.yml      CI: build and attach both editions to a release
 dist/                                    generated portable builds (ignored by git)
 README.md / README.zh-CN.md              user documentation
-CONTRIBUTING.md / CONTRIBUTING.zh-CN.md  build and release guide for maintainers
+CONTRIBUTING.md / CONTRIBUTING.zh-CN.md  build and release guide
 ```
 
 Edition folders and launchers use underscores instead of spaces in their names
