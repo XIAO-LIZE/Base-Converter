@@ -142,12 +142,11 @@ Window {
             Rectangle {
                 width: 40; height: 30; radius: 8
                 color: minMouse.containsMouse ? Qt.rgba(1, 1, 1, 0.08) : "transparent"
-                Text {
+                Rectangle {
                     anchors.centerIn: parent
-                    text: "—"
-                    color: "#93a4bd"
-                    font.family: "Segoe UI"
-                    font.pixelSize: 13
+                    width: 10; height: 1
+                    color: minMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                    antialiasing: true
                 }
                 MouseArea {
                     id: minMouse
@@ -161,12 +160,45 @@ Window {
             Rectangle {
                 width: 40; height: 30; radius: 8
                 color: maxMouse.containsMouse ? Qt.rgba(1, 1, 1, 0.08) : "transparent"
-                Text {
+                Item {
                     anchors.centerIn: parent
-                    text: root.maximized ? "❐" : "□"
-                    color: "#93a4bd"
-                    font.family: "Segoe UI"
-                    font.pixelSize: 12
+                    width: 14; height: 14
+
+                    Rectangle {
+                        anchors.centerIn: parent
+                        visible: !root.maximized
+                        width: 10; height: 10
+                        color: "transparent"
+                        border.width: 1
+                        border.color: maxMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                        radius: 1
+                        antialiasing: true
+                    }
+
+                    Item {
+                        anchors.centerIn: parent
+                        visible: root.maximized
+                        width: 12; height: 12
+
+                        Rectangle {
+                            x: 2; y: 0
+                            width: 9; height: 9
+                            color: "transparent"
+                            border.width: 1
+                            border.color: maxMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                            radius: 1
+                            antialiasing: true
+                        }
+                        Rectangle {
+                            x: 0; y: 2
+                            width: 9; height: 9
+                            color: "transparent"
+                            border.width: 1
+                            border.color: maxMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                            radius: 1
+                            antialiasing: true
+                        }
+                    }
                 }
                 MouseArea {
                     id: maxMouse
@@ -180,12 +212,24 @@ Window {
             Rectangle {
                 width: 40; height: 30; radius: 8
                 color: closeMouse.containsMouse ? "#e81123" : "transparent"
-                Text {
+                Item {
                     anchors.centerIn: parent
-                    text: "✕"
-                    color: closeMouse.containsMouse ? "#ffffff" : "#93a4bd"
-                    font.family: "Segoe UI"
-                    font.pixelSize: 12
+                    width: 12; height: 12
+
+                    Rectangle {
+                        anchors.centerIn: parent
+                        width: 11; height: 1
+                        color: closeMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                        rotation: 45
+                        antialiasing: true
+                    }
+                    Rectangle {
+                        anchors.centerIn: parent
+                        width: 11; height: 1
+                        color: closeMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                        rotation: -45
+                        antialiasing: true
+                    }
                 }
                 MouseArea {
                     id: closeMouse
