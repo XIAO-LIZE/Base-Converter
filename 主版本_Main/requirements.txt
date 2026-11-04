@@ -1,2 +1,2 @@
-# Visual edition (PySide6 + QML) dependencies.
+# Main edition (PySide6 + QML) dependencies.
 PySide6>=6.8

@@ -1,7 +1,7 @@
 """BaseConverter single-file edition -- tkinter interface.
 
 The parsing and formatting logic lives in :mod:`core` at the repository root
-and is shared with the PySide6 visual edition (``主版本/``).  The interface is
+and is shared with the PySide6 main edition (``主版本_Main/``). The interface is
 bilingual (Simplified Chinese / English) and uses only the Python standard
 library.
 """

@@ -3,7 +3,7 @@
 Run from the repository root:
 
     python -m pip install pyinstaller
-    python tools/build_light.py
+    python tools/build_singlefile.py
 """
 import os
 import subprocess

@@ -30,17 +30,17 @@ jobs:
           python -m pip install -r "主版本_Main/requirements.txt"
           python -m pip install pyinstaller
 
-      - name: Build main visual edition
-        run: python tools/build_glass.py
+      - name: Build main edition
+        run: python tools/build_main.py
 
       - name: Build single-file edition
-        run: python tools/build_light.py
+        run: python tools/build_singlefile.py
 
       - name: Package release assets
         shell: pwsh
         run: |
-          Copy-Item -LiteralPath "LICENSE" -Destination "dist/BaseConverter-Glass/LICENSE" -Force
-          Compress-Archive -Path "dist/BaseConverter-Glass" -DestinationPath "BaseConverter-Glass-Windows.zip" -Force
+          Copy-Item -LiteralPath "LICENSE" -Destination "dist/BaseConverter-Main/LICENSE" -Force
+          Compress-Archive -Path "dist/BaseConverter-Main" -DestinationPath "BaseConverter-Main-Windows.zip" -Force
           Copy-Item "dist/BaseConverter-SingleFile.exe" "BaseConverter-SingleFile-Windows.exe" -Force
 
           New-Item -ItemType Directory -Force -Path "release-src/main" | Out-Null
@@ -70,7 +70,7 @@ jobs:
         with:
           name: BaseConverter-Windows
           path: |
-            BaseConverter-Glass-Windows.zip
+            BaseConverter-Main-Windows.zip
             BaseConverter-SingleFile-Windows.exe
             BaseConverter-Main-Source.zip
             BaseConverter-SingleFile-Source.zip
@@ -80,7 +80,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            BaseConverter-Glass-Windows.zip
+            BaseConverter-Main-Windows.zip
             BaseConverter-SingleFile-Windows.exe
             BaseConverter-Main-Source.zip
             BaseConverter-SingleFile-Source.zip

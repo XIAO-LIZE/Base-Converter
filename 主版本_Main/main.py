@@ -1,4 +1,4 @@
-"""Main visual edition entry point: PySide6 + QML, Liquid-Glass-inspired UI."""
+"""Main edition entry point: PySide6 + QML, Liquid-Glass-inspired UI."""
 import base64
 import ctypes
 import importlib.util
@@ -20,7 +20,7 @@ if str(ROOT) not in sys.path:
 
 from backend import Backend  # noqa: E402
 
-LOG_FILE = Path(tempfile.gettempdir()) / "BaseConverter-Glass.log"
+LOG_FILE = Path(tempfile.gettempdir()) / "BaseConverter-Main.log"
 
 
 def _log(message: str) -> None:
@@ -37,10 +37,10 @@ def _qml_entry() -> Path:
     if getattr(sys, "frozen", False):
         bundle = Path(getattr(sys, "_MEIPASS", HERE))
         candidates.extend([
-            bundle / "glass" / "qml" / "Main.qml",
-            bundle / "qml" / "Main.qml",
+            bundle / "main" / "qml" / "MainWindow.qml",
+            bundle / "qml" / "MainWindow.qml",
         ])
-    candidates.append(HERE / "qml" / "Main.qml")
+    candidates.append(HERE / "qml" / "MainWindow.qml")
     for candidate in candidates:
         if candidate.exists():
             return candidate

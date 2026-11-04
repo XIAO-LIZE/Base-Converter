@@ -8,7 +8,7 @@ on this page: they only need a release asset from the
 
 ## Development setup
 
-- Main visual edition: Python 3.9+, `pip install -r "主版本_Main/requirements.txt"`
+- Main edition: Python 3.9+, `pip install -r "主版本_Main/requirements.txt"`
 - Single-file edition: Python 3.8+ with tkinter
 - Shared core: standard library only
 
@@ -28,19 +28,30 @@ python -m unittest discover -s tests
 The Windows launchers in each edition folder locate Python and the required
 dependencies for source checkouts.
 
+## Naming convention
+
+- Edition folders: `主版本_Main`, `单文件版本_SingleFile`
+- Launchers: `主版本_Main/启动_Start.bat`,
+  `单文件版本_SingleFile/单文件启动_SingleFileStart.bat`
+- Build scripts: `tools/build_main.py`, `tools/build_singlefile.py`
+- Build output: `dist/BaseConverter-Main/`, `dist/BaseConverter-SingleFile.exe`
+- QML: `MainWindow.qml`, `pages/*Page.qml`, `components/Glass*.qml`
+- Release assets: `BaseConverter-Main-Windows.zip`,
+  `BaseConverter-SingleFile-Windows.exe`, and the matching `-Source` archives
+
 ## Portable builds
 
 Install PyInstaller, then build one or both editions:
 
 ```bash
 python -m pip install pyinstaller
-python tools/build_glass.py
-python tools/build_light.py
+python tools/build_main.py
+python tools/build_singlefile.py
 ```
 
 Outputs:
 
-- `dist/BaseConverter-Glass/` — onedir build with the Qt runtime; zip the whole
+- `dist/BaseConverter-Main/` — onedir build with the Qt runtime; zip the whole
   folder. It is typically 300–450 MB.
 - `dist/BaseConverter-SingleFile.exe` — one-file build with the Python runtime.
 
@@ -63,7 +74,7 @@ git push origin master --tags
 Release assets created by the workflow:
 
 - `BaseConverter-SingleFile-Windows.exe`
-- `BaseConverter-Glass-Windows.zip`
+- `BaseConverter-Main-Windows.zip`
 - `BaseConverter-SingleFile-Source.zip`
 - `BaseConverter-Main-Source.zip`
 

@@ -39,7 +39,7 @@ Item {
                     font.bold: true
                 }
 
-                Segmented {
+                GlassSegmented {
                     id: bases
                     Layout.fillWidth: true
                     Layout.preferredHeight: 40

@@ -4,7 +4,7 @@
 
 | 版本 | 外观 | 入口 |
 | ---- | ---- | ---- |
-| **主版本（视觉版）** | 无边框 PySide6/QML 界面，Liquid Glass 风格：实时背景模糊、玻璃卡片、动画标签栏、自绘标题栏 | `主版本_Main/main.py` · `主版本_Main/启动_Start.bat` |
+| **主版本（PySide6/QML）** | 无边框 PySide6/QML 界面，Liquid Glass 风格：实时背景模糊、玻璃卡片、动画标签栏、自绘标题栏 | `主版本_Main/main.py` · `主版本_Main/启动_Start.bat` |
 | **单文件版本** | 紧凑的 tkinter 界面，仅使用 Python 标准库 | `单文件版本_SingleFile/main.py` · `单文件版本_SingleFile/单文件启动_SingleFileStart.bat` |
 
 [English](README.md) | 简体中文
@@ -19,7 +19,7 @@ GitHub 的 “Download ZIP” 下载的是完整源码（两个版本都有）�
 | 需要的版本 | Release 附件 |
 | ---------- | ------------ |
 | 单文件版本，无需安装 Python | `BaseConverter-SingleFile-Windows.exe` |
-| 主版本，无需安装 Python | `BaseConverter-Glass-Windows.zip`（解压后运行 `BaseConverter-Glass.exe`） |
+| 主版本，无需安装 Python | `BaseConverter-Main-Windows.zip`（解压后运行 `BaseConverter-Main.exe`） |
 | 只要单文件版本源码 | `BaseConverter-SingleFile-Source.zip` |
 | 只要主版本源码 | `BaseConverter-Main-Source.zip` |
 
@@ -48,7 +48,7 @@ GitHub 的 “Download ZIP” 下载的是完整源码（两个版本都有）�
 
 ## 环境要求
 
-| | 主版本（视觉版） | 单文件版本 |
+| | 主版本（PySide6/QML） | 单文件版本 |
 | --- | --- | --- |
 | Python | 3.9 或更高 | 3.8 或更高 |
 | GUI 工具包 | PySide6 6.8+（Qt 6） | tkinter（Python 官方安装包自带） |
@@ -143,7 +143,7 @@ Windows 下可双击 `主版本_Main/启动_Start.bat`。启动器会优先选�
 ```
 单文件版本_SingleFile/                    单文件版本文件夹
 ├── main.py                              tkinter 入口
-├── icon.ico                             可执行文件图标
+├── icon.png / icon.ico                  窗口与可执行文件图标
 └── 单文件启动_SingleFileStart.bat         Windows 启动器（中英文标注）
 
 主版本_Main/                               主版本文件夹
@@ -153,8 +153,8 @@ Windows 下可双击 `主版本_Main/启动_Start.bat`。启动器会优先选�
 ├── icon.png / icon.ico                  窗口与可执行文件图标
 ├── 启动_Start.bat                        Windows 启动器（中英文标注）
 └── qml/
-    ├── Main.qml                         窗口、背景、标签栏、状态栏
-    ├── components/                      GlassCard、GlassField、GlassButton、Segmented
+    ├── MainWindow.qml                   窗口、背景、标签栏、状态栏
+    ├── components/                      GlassButton、GlassCard、GlassField、GlassSegmented
     └── pages/                           ConverterPage、AsciiPage、Ipv4Page
 
 core/
@@ -163,8 +163,8 @@ core/
 └── ipv4.py                              IPv4 解析、子网计算、地址分类
 
 tests/test_core.py                       共享核心单元测试
-tools/build_light.py                     单文件版本 PyInstaller 打包脚本
-tools/build_glass.py                     主版本 PyInstaller onedir 打包脚本
+tools/build_main.py                      主版本 PyInstaller onedir 打包脚本
+tools/build_singlefile.py                单文件版本 PyInstaller 打包脚本
 .github/workflows/build-release.yml      CI：构建两个版本并附加到 Release
 dist/                                    生成的便携版本（已被 git 忽略）
 README.md / README.zh-CN.md               用户文档
@@ -185,7 +185,7 @@ CONTRIBUTING.md / CONTRIBUTING.zh-CN.md   构建与发布说明
 - 主版本默认窗口 1180×940 逻辑像素，最小 980×820。
 - 背景模糊依赖 GPU/桌面合成。若环境不支持，玻璃卡片仍会以半透明颜色显示。
 - 主版本依赖 PySide6（LGPLv3/GPL）。分发打包版本时需附带 Qt/PySide6 许可说明，并遵守 LGPL 关于 Qt 库可替换性的要求。
-- 主版本会在 `%TEMP%\BaseConverter-Glass.log` 写入启动诊断日志；程序不访问网络，也不写配置文件。
+- 主版本会在 `%TEMP%\BaseConverter-Main.log` 写入启动诊断日志；程序不访问网络，也不写配置文件。
 
 ## 常见问题
 

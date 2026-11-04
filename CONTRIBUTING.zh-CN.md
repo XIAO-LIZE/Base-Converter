@@ -26,19 +26,30 @@ python -m unittest discover -s tests
 
 各版本文件夹中的 Windows 启动器用于源码环境，会定位 Python 和所需依赖。
 
+## 命名规范
+
+- 版本文件夹：`主版本_Main`、`单文件版本_SingleFile`
+- 启动器：`主版本_Main/启动_Start.bat`、
+  `单文件版本_SingleFile/单文件启动_SingleFileStart.bat`
+- 构建脚本：`tools/build_main.py`、`tools/build_singlefile.py`
+- 构建输出：`dist/BaseConverter-Main/`、`dist/BaseConverter-SingleFile.exe`
+- QML：`MainWindow.qml`、`pages/*Page.qml`、`components/Glass*.qml`
+- 发布附件：`BaseConverter-Main-Windows.zip`、
+  `BaseConverter-SingleFile-Windows.exe`，以及对应的 `-Source` 源码包
+
 ## 便携打包
 
 安装 PyInstaller 后构建一个或两个版本：
 
 ```bash
 python -m pip install pyinstaller
-python tools/build_glass.py
-python tools/build_light.py
+python tools/build_main.py
+python tools/build_singlefile.py
 ```
 
 输出：
 
-- `dist/BaseConverter-Glass/`：带 Qt 运行库的文件夹版本，需压缩整个文件夹后分发，
+- `dist/BaseConverter-Main/`：带 Qt 运行库的文件夹版本，需压缩整个文件夹后分发，
   通常为 300–450 MB。
 - `dist/BaseConverter-SingleFile.exe`：带 Python 运行时的单文件版本。
 
@@ -61,7 +72,7 @@ git push origin master --tags
 工作流生成的发布附件：
 
 - `BaseConverter-SingleFile-Windows.exe`
-- `BaseConverter-Glass-Windows.zip`
+- `BaseConverter-Main-Windows.zip`
 - `BaseConverter-SingleFile-Source.zip`
 - `BaseConverter-Main-Source.zip`
 

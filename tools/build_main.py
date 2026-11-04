@@ -1,11 +1,11 @@
-"""Build a portable onedir folder for the PySide6 visual edition.
+"""Build a portable onedir folder for the PySide6 main edition.
 
 Run from the repository root:
 
     python -m pip install pyinstaller
-    python tools/build_glass.py
+    python tools/build_main.py
 
-The result is dist/BaseConverter-Glass/. Zip that folder and it runs on a
+The result is dist/BaseConverter-Main/. Zip that folder and it runs on a
 Windows machine without Python or PySide6 installed.
 """
 import os
@@ -58,7 +58,7 @@ def main() -> int:
     cmd = [
         sys.executable, "-m", "PyInstaller",
         "--noconfirm", "--clean", "--windowed", "--onedir",
-        "--name", "BaseConverter-Glass",
+        "--name", "BaseConverter-Main",
         "--icon", str(ROOT / "主版本_Main" / "icon.ico"),
         "--paths", str(ROOT),
         "--add-data", f"{qml_dir}{os.pathsep}qml",
@@ -77,7 +77,7 @@ def main() -> int:
         return result.returncode
     print()
     print("Portable build ready:")
-    print(f"  {ROOT / 'dist' / 'BaseConverter-Glass'}")
+    print(f"  {ROOT / 'dist' / 'BaseConverter-Main'}")
     print("Zip that folder and distribute the extracted folder.")
     return 0
 

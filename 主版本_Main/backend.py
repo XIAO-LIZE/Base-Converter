@@ -1,4 +1,4 @@
-"""QML backend for the visual (PySide6) edition.
+"""QML backend for the main (PySide6) edition.
 
 The backend is deliberately thin: parsing and formatting live in ``core`` so
 that both the Qt and the Tk editions stay in sync.

@@ -1,5 +1,5 @@
 @echo off
-rem BaseConverter main visual edition launcher (PySide6 + QML).
+rem BaseConverter main edition launcher (PySide6 + QML).
 rem
 rem Picks a Python 3.9+ interpreter that already has PySide6. If none has the
 rem dependency, it offers to install requirements.txt into the first
@@ -57,7 +57,7 @@ exit /b 0
 
 :install_pyside
 echo.
-echo The visual edition needs PySide6 (Qt 6) for the QML interface.
+echo The main edition needs PySide6 (Qt 6) for the QML interface.
 if not defined AUTO (
     choice /c YN /n /m "Install PySide6 now with pip? [Y/N] "
     if errorlevel 2 goto :manual_install

@@ -6,7 +6,7 @@ core and are stored in separate folders:
 
 | Edition | Look | Entry point |
 | ------- | ---- | ----------- |
-| **Main visual edition** | Frameless, Liquid-Glass-inspired PySide6/QML interface with live backdrop blur, animated tab indicator, glass cards and a custom title bar | `主版本_Main/main.py` · `主版本_Main/启动_Start.bat` |
+| **Main edition** | Frameless, Liquid-Glass-inspired PySide6/QML interface with live backdrop blur, animated tab indicator, glass cards and a custom title bar | `主版本_Main/main.py` · `主版本_Main/启动_Start.bat` |
 | **Single-file edition** | Compact tkinter interface using only the Python standard library | `单文件版本_SingleFile/main.py` · `单文件版本_SingleFile/单文件启动_SingleFileStart.bat` |
 
 English | [简体中文](README.zh-CN.md)
@@ -21,15 +21,15 @@ editions; use a release asset when only one edition is needed.
 | Requirement | Release asset |
 | ----------- | ------------- |
 | Single-file edition, no Python required | `BaseConverter-SingleFile-Windows.exe` |
-| Main visual edition, no Python required | `BaseConverter-Glass-Windows.zip` (extract, then run `BaseConverter-Glass.exe`) |
+| Main edition, no Python required | `BaseConverter-Main-Windows.zip` (extract, then run `BaseConverter-Main.exe`) |
 | Single-file source only | `BaseConverter-SingleFile-Source.zip` |
-| Main visual source only | `BaseConverter-Main-Source.zip` |
+| Main source only | `BaseConverter-Main-Source.zip` |
 
 The `.bat` launchers and source files require Python. The published Windows
-assets bundle Python; the visual edition also bundles Qt/PySide6.
+assets bundle Python; the main edition also bundles Qt/PySide6.
 
 Source-only archives include the shared `core/` folder. After extracting one,
-install the visual dependencies with
+install the main edition dependencies with
 `python -m pip install -r "主版本_Main/requirements.txt"` and run
 `python "主版本_Main/main.py"`; the single-file edition runs with
 `python "单文件版本_SingleFile/main.py"`.
@@ -47,20 +47,20 @@ Both editions share the same core behaviour:
 
 Edition-specific:
 
-- **Main visual edition**: live backdrop blur on glass panels, rounded glass cards, frameless custom title bar with drag/resize support, animated tab selection, hover feedback, explicit Clear buttons for ASCII lookups
+- **Main edition**: live backdrop blur on glass panels, rounded glass cards, frameless custom title bar with drag/resize support, animated tab selection, hover feedback, explicit Clear buttons for ASCII lookups
 - **Single-file edition**: compact window, standard-library only, fixed header table with adaptive columns, animated tab underline and startup fade
 - Windows integration: application icon and AppUserModelID; the single-file edition additionally requests a dark native title bar and rounded window corners through DWM
 
 ## Requirements
 
-| | Main visual edition | Single-file edition |
+| | Main edition | Single-file edition |
 | --- | --- | --- |
 | Python | 3.9 or newer | 3.8 or newer |
 | GUI toolkit | PySide6 6.8+ (Qt 6) | tkinter (included with the official Python installers) |
 | Third-party packages | `PySide6` | none |
 | Operating system | Windows 10/11 recommended; Qt 6 is cross-platform | Windows/macOS/Linux |
 
-The single-file edition has no `pip install` step. The main visual edition needs
+The single-file edition has no `pip install` step. The main edition needs
 the Qt runtime; install it with:
 
 ```bash
@@ -80,7 +80,7 @@ On Windows, double-click `单文件版本_SingleFile/单文件启动_SingleFileS
 Python through winget when none is usable. Pass `--auto` to skip confirmation
 prompts.
 
-### Main visual edition (PySide6 + QML)
+### Main edition (PySide6 + QML)
 
 ```bash
 python -m pip install -r "主版本_Main/requirements.txt"
@@ -89,10 +89,10 @@ python "主版本_Main/main.py"
 
 On Windows, double-click `主版本_Main/启动_Start.bat`. It selects a Python
 3.9+ interpreter that already has PySide6; if the dependency is missing, it
-offers to run `pip install -r requirements.txt` from the main visual edition
+offers to run `pip install -r requirements.txt` from the main edition
 folder. Pass `--auto` to accept the prompt automatically.
 
-Keyboard shortcuts in the visual edition: `Ctrl+L` switches language.
+Keyboard shortcuts in the main edition: `Ctrl+L` switches language.
 
 ## Interface
 
@@ -112,7 +112,7 @@ Accepted input:
 Negative values are rendered as sign plus magnitude (`-5` → `-101`, `-5`,
 `-5`, `-5`); two's complement is not used. Binary results are grouped in
 nibbles. Long values wrap to the available width; the complete value is always
-kept for copying. In the visual edition each result has its own Copy button.
+kept for copying. In the main edition each result has its own Copy button.
 
 ### ASCII table
 
@@ -188,7 +188,7 @@ single file.
   toggled during search; result rows measure available width/height and wrap or
   truncate while keeping the complete value for copying. DPI awareness is
   requested per monitor (v2), then system-wide.
-- **Main visual edition**: QML renders the UI. Glass panels capture the
+- **Main edition**: QML renders the UI. Glass panels capture the
   background beneath them with `ShaderEffectSource`, blur it with
   `GaussianBlur`, mask it with `OpacityMask`, and add a translucent tint and
   specular border. The window is frameless with a custom title bar and edge
@@ -202,24 +202,24 @@ single file.
 ```
 单文件版本_SingleFile/                    single-file edition folder
 ├── main.py                              tkinter entry point
-├── icon.ico                             executable icon
+├── icon.png / icon.ico                  window and executable icon
 └── 单文件启动_SingleFileStart.bat        Windows launcher (Chinese + English label)
 
-主版本_Main/                               main visual edition folder
+主版本_Main/                               main edition folder
 ├── main.py                              PySide6 entry point
 ├── backend.py                           QObject bridge between QML and core
 ├── requirements.txt                     PySide6 dependency
 ├── icon.png / icon.ico                  window and executable icon
 ├── 启动_Start.bat                        Windows launcher (Chinese + English label)
 └── qml/
-    ├── Main.qml                         window, background, tabs, footer
-    ├── components/                      GlassCard, GlassField, GlassButton, Segmented
+    ├── MainWindow.qml                   window, background, tabs, footer
+    ├── components/                      GlassButton, GlassCard, GlassField, GlassSegmented
     └── pages/                           ConverterPage, AsciiPage, Ipv4Page
 
 core/                                    shared logic (no GUI imports)
 tests/test_core.py                       unit tests for the shared core
-tools/build_light.py                     PyInstaller build for the single-file edition
-tools/build_glass.py                     PyInstaller onedir build for the visual edition
+tools/build_main.py                      PyInstaller onedir build for the main edition
+tools/build_singlefile.py                PyInstaller build for the single-file edition
 .github/workflows/build-release.yml      CI: build and attach both editions to a release
 dist/                                    generated portable builds (ignored by git)
 README.md / README.zh-CN.md              user documentation
@@ -238,14 +238,14 @@ Windows; the `dist/` executable names are ASCII only.
 - ASCII covers 7-bit codes 0–127; wider code pages are out of scope.
 - Negative numbers are sign plus magnitude, not two's complement.
 - The single-file edition opens at 760×800 logical pixels (minimum 620×680).
-- The main visual edition opens at 1180×940 logical pixels (minimum 980×820).
+- The main edition opens at 1180×940 logical pixels (minimum 980×820).
 - Backdrop blur requires a GPU/compositing environment. If effects are
   unavailable, the translucent cards still render from their tint colour.
-- The visual edition depends on PySide6, which is licensed under LGPLv3/GPL.
+- The main edition depends on PySide6, which is licensed under LGPLv3/GPL.
   When redistributing a bundled build, include the Qt/PySide6 licence notices
   and keep the Qt libraries replaceable as required by the LGPL.
-- The visual edition writes a diagnostic startup log to
-  `%TEMP%\BaseConverter-Glass.log`. It does not access the network and does not
+- The main edition writes a diagnostic startup log to
+  `%TEMP%\BaseConverter-Main.log`. It does not access the network and does not
   write configuration files.
 
 ## Troubleshooting
@@ -256,7 +256,7 @@ Windows; the `dist/` executable names are ASCII only.
   python.org or `brew install python-tk`.
 - **PySide6 is missing**: run
   `python -m pip install -r "主版本_Main/requirements.txt"`, then
-  `python "主版本_Main/main.py"`. The visual launcher offers the same installation.
+  `python "主版本_Main/main.py"`. The main edition launcher offers the same installation.
 - **QML window is blank or effects are missing**: install the full PySide6
   package (including Qt Quick Effects and Qt5Compat), update the graphics
   driver, and try `set QT_QUICK_BACKEND=software` before launching. Software
