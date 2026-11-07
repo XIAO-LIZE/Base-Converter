@@ -5,7 +5,7 @@ Run from the repository root:
     python -m pip install pyinstaller
     python tools/build_main.py
 
-The result is dist/BaseConverter-Main.exe. It runs on a Windows machine without
+The result is dist/BaseConverter_Main.exe. It runs on a Windows machine without
 Python or PySide6 installed.
 """
 import os
@@ -58,7 +58,7 @@ def main() -> int:
     cmd = [
         sys.executable, "-m", "PyInstaller",
         "--noconfirm", "--clean", "--windowed", "--onefile",
-        "--name", "BaseConverter-Main",
+        "--name", "BaseConverter_Main",
         "--icon", str(ROOT / "主版本_Main" / "icon.ico"),
         "--paths", str(ROOT),
         "--add-data", f"{qml_dir}{os.pathsep}qml",
@@ -77,7 +77,7 @@ def main() -> int:
         return result.returncode
     print()
     print("Portable build ready:")
-    print(f"  {ROOT / 'dist' / 'BaseConverter-Main.exe'}")
+    print(f"  {ROOT / 'dist' / 'BaseConverter_Main.exe'}")
     return 0
 
 

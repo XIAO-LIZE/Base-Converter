@@ -39,8 +39,8 @@ jobs:
       - name: Package release assets
         shell: pwsh
         run: |
-          Copy-Item "dist/BaseConverter-Main.exe" "BaseConverter-Main-Windows.exe" -Force
-          Copy-Item "dist/BaseConverter-SingleFile.exe" "BaseConverter-SingleFile-Windows.exe" -Force
+          Copy-Item "dist/BaseConverter_Main.exe" "BaseConverter_Main_Windows.exe" -Force
+          Copy-Item "dist/BaseConverter_SingleFile.exe" "BaseConverter_SingleFile_Windows.exe" -Force
 
           New-Item -ItemType Directory -Force -Path "release-src/main" | Out-Null
           Copy-Item -LiteralPath "主版本_Main" -Destination "release-src/main" -Recurse -Force
@@ -51,7 +51,7 @@ jobs:
           Copy-Item -LiteralPath "CONTRIBUTING.md" -Destination "release-src/main/CONTRIBUTING.md" -Force
           Copy-Item -LiteralPath "CONTRIBUTING.zh-CN.md" -Destination "release-src/main/CONTRIBUTING.zh-CN.md" -Force
           Get-ChildItem -Path "release-src/main" -Recurse -Directory -Filter "__pycache__" | Remove-Item -Recurse -Force
-          Compress-Archive -Path "release-src/main/*" -DestinationPath "BaseConverter-Main-Source.zip" -Force
+          Compress-Archive -Path "release-src/main/*" -DestinationPath "BaseConverter_Main_Source.zip" -Force
 
           New-Item -ItemType Directory -Force -Path "release-src/single" | Out-Null
           Copy-Item -LiteralPath "单文件版本_SingleFile" -Destination "release-src/single" -Recurse -Force
@@ -62,35 +62,35 @@ jobs:
           Copy-Item -LiteralPath "CONTRIBUTING.md" -Destination "release-src/single/CONTRIBUTING.md" -Force
           Copy-Item -LiteralPath "CONTRIBUTING.zh-CN.md" -Destination "release-src/single/CONTRIBUTING.zh-CN.md" -Force
           Get-ChildItem -Path "release-src/single" -Recurse -Directory -Filter "__pycache__" | Remove-Item -Recurse -Force
-          Compress-Archive -Path "release-src/single/*" -DestinationPath "BaseConverter-SingleFile-Source.zip" -Force
+          Compress-Archive -Path "release-src/single/*" -DestinationPath "BaseConverter_SingleFile_Source.zip" -Force
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: BaseConverter-Windows
+          name: BaseConverter_Windows
           path: |
-            BaseConverter-Main-Windows.exe
-            BaseConverter-SingleFile-Windows.exe
-            BaseConverter-Main-Source.zip
-            BaseConverter-SingleFile-Source.zip
+            BaseConverter_Main_Windows.exe
+            BaseConverter_SingleFile_Windows.exe
+            BaseConverter_Main_Source.zip
+            BaseConverter_SingleFile_Source.zip
 
       - name: Publish GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            BaseConverter-Main-Windows.exe
-            BaseConverter-SingleFile-Windows.exe
-            BaseConverter-Main-Source.zip
-            BaseConverter-SingleFile-Source.zip
+            BaseConverter_Main_Windows.exe
+            BaseConverter_SingleFile_Windows.exe
+            BaseConverter_Main_Source.zip
+            BaseConverter_SingleFile_Source.zip
           body: |
             ## Download / 下载
 
             **No Python required / 无需安装 Python**
 
-            - `BaseConverter-SingleFile-Windows.exe` — double-click to run / 单文件版本，双击运行
-            - `BaseConverter-Main-Windows.exe` — double-click to run / 主版本，双击运行
-            - `BaseConverter-Main-Source.zip`, `BaseConverter-SingleFile-Source.zip` — source code / 源码
+            - `BaseConverter_SingleFile_Windows.exe`: double-click to run / 单文件版本，双击运行
+            - `BaseConverter_Main_Windows.exe`: double-click to run / 主版本，双击运行
+            - `BaseConverter_Main_Source.zip`, `BaseConverter_SingleFile_Source.zip`: source code / 源码
 
             Do not use the repository's "Download ZIP" source archive if you only
             want to run the application. / 只想运行程序时，不要下载仓库的
@@ -111,10 +111,10 @@ jobs:
           }
           $release = Invoke-RestMethod -Uri "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ github.ref_name }}" -Headers $headers
           $labels = @{
-            "BaseConverter-Main-Windows.exe" = "主版本 Main — Windows executable"
-            "BaseConverter-SingleFile-Windows.exe" = "单文件版本 SingleFile — Windows executable"
-            "BaseConverter-Main-Source.zip" = "主版本 Main — source"
-            "BaseConverter-SingleFile-Source.zip" = "单文件版本 SingleFile — source"
+            "BaseConverter_Main_Windows.exe" = "主版本_Main_Windows_exe"
+            "BaseConverter_SingleFile_Windows.exe" = "单文件版本_SingleFile_Windows_exe"
+            "BaseConverter_Main_Source.zip" = "主版本_Main_source"
+            "BaseConverter_SingleFile_Source.zip" = "单文件版本_SingleFile_source"
           }
           foreach ($asset in $release.assets) {
             if ($labels.ContainsKey($asset.name)) {

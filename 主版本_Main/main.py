@@ -20,7 +20,7 @@ if str(ROOT) not in sys.path:
 
 from backend import Backend  # noqa: E402
 
-LOG_FILE = Path(tempfile.gettempdir()) / "BaseConverter-Main.log"
+LOG_FILE = Path(tempfile.gettempdir()) / "BaseConverter_Main.log"
 
 
 def _log(message: str) -> None:

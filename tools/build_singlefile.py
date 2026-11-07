@@ -35,7 +35,7 @@ def main() -> int:
     cmd = [
         sys.executable, "-m", "PyInstaller",
         "--noconfirm", "--clean", "--windowed", "--onefile",
-        "--name", "BaseConverter-SingleFile",
+        "--name", "BaseConverter_SingleFile",
         "--icon", str(ROOT / "单文件版本_SingleFile" / "icon.ico"),
         "--paths", str(ROOT),
         "--add-data", f"{core_dir}{os.pathsep}core",
@@ -47,7 +47,7 @@ def main() -> int:
         return result.returncode
     print()
     print("Portable build ready:")
-    print(f"  {ROOT / 'dist' / 'BaseConverter-SingleFile.exe'}")
+    print(f"  {ROOT / 'dist' / 'BaseConverter_SingleFile.exe'}")
     return 0
 
 

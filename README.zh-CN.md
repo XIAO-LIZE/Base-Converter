@@ -14,7 +14,7 @@
 ### Windows 电脑没有 Python
 
 1. 打开 [Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) 页面。
-2. 下载 `BaseConverter-SingleFile-Windows.exe`（标签：单文件版本 SingleFile）或 `BaseConverter-Main-Windows.exe`（标签：主版本 Main）。
+2. 下载 `BaseConverter_SingleFile_Windows.exe`（标签：单文件版本_SingleFile）或 `BaseConverter_Main_Windows.exe`（标签：主版本_Main）。
 3. 双击 exe。不需要安装程序、Python、PySide6，也不需要命令行。
 
 不要下载仓库的 “Download ZIP” 源码包，也不要在没有 Python 的电脑上运行 `.bat`
@@ -27,10 +27,10 @@ GitHub 的 “Download ZIP” 下载的是完整源码（两个版本都有）�
 
 | 需要的版本 | Release 附件 |
 | ---------- | ------------ |
-| 单文件版本，无需安装 Python | `BaseConverter-SingleFile-Windows.exe`（单文件版本 SingleFile） |
-| 主版本，无需安装 Python | `BaseConverter-Main-Windows.exe`（主版本 Main） |
-| 只要单文件版本源码 | `BaseConverter-SingleFile-Source.zip`（单文件版本 SingleFile） |
-| 只要主版本源码 | `BaseConverter-Main-Source.zip`（主版本 Main） |
+| 单文件版本，无需安装 Python | `BaseConverter_SingleFile_Windows.exe`（单文件版本_SingleFile） |
+| 主版本，无需安装 Python | `BaseConverter_Main_Windows.exe`（主版本_Main） |
+| 只要单文件版本源码 | `BaseConverter_SingleFile_Source.zip`（单文件版本_SingleFile） |
+| 只要主版本源码 | `BaseConverter_Main_Source.zip`（主版本_Main） |
 
 GitHub 会把附件文件名中的非 ASCII 字符替换掉，所以下载后的文件名保持 ASCII；
 发布页面会用上表中的中英文标签显示版本名称，程序本身不受影响。
@@ -197,7 +197,7 @@ CONTRIBUTING.md / CONTRIBUTING.zh-CN.md   构建与发布说明
 - 主版本默认窗口 1180×940 逻辑像素，最小 980×820。
 - 背景模糊依赖 GPU/桌面合成。若环境不支持，玻璃卡片仍会以半透明颜色显示。
 - 主版本依赖 PySide6（LGPLv3/GPL）。分发打包版本时需附带 Qt/PySide6 许可说明，并遵守 LGPL 关于 Qt 库可替换性的要求。
-- 主版本会在 `%TEMP%\BaseConverter-Main.log` 写入启动诊断日志；程序不访问网络，也不写配置文件。
+- 主版本会在 `%TEMP%\BaseConverter_Main.log` 写入启动诊断日志；程序不访问网络，也不写配置文件。
 
 ## 常见问题
 
