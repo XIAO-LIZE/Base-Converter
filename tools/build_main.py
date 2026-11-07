@@ -1,12 +1,12 @@
-"""Build a portable onedir folder for the PySide6 main edition.
+"""Build a portable one-file executable for the PySide6 main edition.
 
 Run from the repository root:
 
     python -m pip install pyinstaller
     python tools/build_main.py
 
-The result is dist/BaseConverter-Main/. Zip that folder and it runs on a
-Windows machine without Python or PySide6 installed.
+The result is dist/BaseConverter-Main.exe. It runs on a Windows machine without
+Python or PySide6 installed.
 """
 import os
 import shutil
@@ -57,7 +57,7 @@ def main() -> int:
     icon = ROOT / "主版本_Main" / "icon.png"
     cmd = [
         sys.executable, "-m", "PyInstaller",
-        "--noconfirm", "--clean", "--windowed", "--onedir",
+        "--noconfirm", "--clean", "--windowed", "--onefile",
         "--name", "BaseConverter-Main",
         "--icon", str(ROOT / "主版本_Main" / "icon.ico"),
         "--paths", str(ROOT),
@@ -77,8 +77,7 @@ def main() -> int:
         return result.returncode
     print()
     print("Portable build ready:")
-    print(f"  {ROOT / 'dist' / 'BaseConverter-Main'}")
-    print("Zip that folder and distribute the extracted folder.")
+    print(f"  {ROOT / 'dist' / 'BaseConverter-Main.exe'}")
     return 0
 
 

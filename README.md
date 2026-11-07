@@ -16,8 +16,8 @@ English | [简体中文](README.zh-CN.md)
 ### Windows without Python
 
 1. Open the [Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) page.
-2. Download `BaseConverter-SingleFile-Windows.exe` (single file) or `BaseConverter-Main-Windows.zip` (extract it first).
-3. Run the `.exe` directly. No installer, Python, PySide6 or command line is needed.
+2. Download `BaseConverter-单文件版本_SingleFile-Windows.exe` (small) or `BaseConverter-主版本_Main-Windows.exe` (full interface).
+3. Double-click the `.exe`. No installer, Python, PySide6 or command line is needed.
 
 Do not use the repository's "Download ZIP" source archive and do not run the
 `.bat` launchers on a machine without Python; those are development entries.
@@ -29,10 +29,10 @@ editions; use a release asset when only one edition is needed.
 
 | Requirement | Release asset |
 | ----------- | ------------- |
-| Single-file edition, no Python required | `BaseConverter-SingleFile-Windows.exe` |
-| Main edition, no Python required | `BaseConverter-Main-Windows.zip` (extract, then run `BaseConverter-Main.exe`) |
-| Single-file source only | `BaseConverter-SingleFile-Source.zip` |
-| Main source only | `BaseConverter-Main-Source.zip` |
+| Single-file edition, no Python required | `BaseConverter-单文件版本_SingleFile-Windows.exe` |
+| Main edition, no Python required | `BaseConverter-主版本_Main-Windows.exe` |
+| Single-file source only | `BaseConverter-单文件版本_SingleFile-Source.zip` |
+| Main source only | `BaseConverter-主版本_Main-Source.zip` |
 
 The `.bat` launchers and source files require Python. The published Windows
 assets bundle Python; the main edition also bundles Qt/PySide6.
@@ -227,7 +227,7 @@ single file.
 
 core/                                    shared logic (no GUI imports)
 tests/test_core.py                       unit tests for the shared core
-tools/build_main.py                      PyInstaller onedir build for the main edition
+tools/build_main.py                      PyInstaller one-file build for the main edition
 tools/build_singlefile.py                PyInstaller build for the single-file edition
 .github/workflows/build-release.yml      CI: build and attach both editions to a release
 dist/                                    generated portable builds (ignored by git)

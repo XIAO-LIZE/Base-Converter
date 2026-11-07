@@ -14,8 +14,8 @@
 ### Windows 电脑没有 Python
 
 1. 打开 [Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) 页面。
-2. 下载 `BaseConverter-SingleFile-Windows.exe`（单文件）或 `BaseConverter-Main-Windows.zip`（先解压）。
-3. 直接运行 exe。不需要安装程序、Python、PySide6，也不需要命令行。
+2. 下载 `BaseConverter-单文件版本_SingleFile-Windows.exe`（体积小）或 `BaseConverter-主版本_Main-Windows.exe`（完整界面）。
+3. 双击 exe。不需要安装程序、Python、PySide6，也不需要命令行。
 
 不要下载仓库的 “Download ZIP” 源码包，也不要在没有 Python 的电脑上运行 `.bat`
 启动器；这些是开发入口。
@@ -27,10 +27,10 @@ GitHub 的 “Download ZIP” 下载的是完整源码（两个版本都有）�
 
 | 需要的版本 | Release 附件 |
 | ---------- | ------------ |
-| 单文件版本，无需安装 Python | `BaseConverter-SingleFile-Windows.exe` |
-| 主版本，无需安装 Python | `BaseConverter-Main-Windows.zip`（解压后运行 `BaseConverter-Main.exe`） |
-| 只要单文件版本源码 | `BaseConverter-SingleFile-Source.zip` |
-| 只要主版本源码 | `BaseConverter-Main-Source.zip` |
+| 单文件版本，无需安装 Python | `BaseConverter-单文件版本_SingleFile-Windows.exe` |
+| 主版本，无需安装 Python | `BaseConverter-主版本_Main-Windows.exe` |
+| 只要单文件版本源码 | `BaseConverter-单文件版本_SingleFile-Source.zip` |
+| 只要主版本源码 | `BaseConverter-主版本_Main-Source.zip` |
 
 `.bat` 启动器和源码需要 Python；已发布的 Windows 附件已经内置 Python，主版本还内置 Qt/PySide6。
 
@@ -172,7 +172,7 @@ core/
 └── ipv4.py                              IPv4 解析、子网计算、地址分类
 
 tests/test_core.py                       共享核心单元测试
-tools/build_main.py                      主版本 PyInstaller onedir 打包脚本
+tools/build_main.py                      主版本 PyInstaller 单文件打包脚本
 tools/build_singlefile.py                单文件版本 PyInstaller 打包脚本
 .github/workflows/build-release.yml      CI：构建两个版本并附加到 Release
 dist/                                    生成的便携版本（已被 git 忽略）

@@ -32,10 +32,10 @@ python -m unittest discover -s tests
 - 启动器：`主版本_Main/启动_Start.bat`、
   `单文件版本_SingleFile/单文件启动_SingleFileStart.bat`
 - 构建脚本：`tools/build_main.py`、`tools/build_singlefile.py`
-- 构建输出：`dist/BaseConverter-Main/`、`dist/BaseConverter-SingleFile.exe`
+- 构建输出：`dist/BaseConverter-Main.exe`、`dist/BaseConverter-SingleFile.exe`
 - QML：`MainWindow.qml`、`pages/*Page.qml`、`components/Glass*.qml`
-- 发布附件：`BaseConverter-Main-Windows.zip`、
-  `BaseConverter-SingleFile-Windows.exe`，以及对应的 `-Source` 源码包
+- 发布附件：`BaseConverter-主版本_Main-Windows.exe`、
+  `BaseConverter-单文件版本_SingleFile-Windows.exe`，以及对应的 `-Source` 源码包
 
 ## 便携打包
 
@@ -49,9 +49,9 @@ python tools/build_singlefile.py
 
 输出：
 
-- `dist/BaseConverter-Main/`：带 Qt 运行库的文件夹版本，需压缩整个文件夹后分发，
-  通常为 300–450 MB。
-- `dist/BaseConverter-SingleFile.exe`：带 Python 运行时的单文件版本。
+- `dist/BaseConverter-Main.exe`：包含 Python 与 Qt 运行时的单文件版本，体积较大
+  （约 160–180 MB），首次启动会释放运行时。
+- `dist/BaseConverter-SingleFile.exe`：包含 Python 运行时的单文件版本。
 
 这两个版本的目标机器都不需要安装 Python 或 PySide6。
 
@@ -71,10 +71,10 @@ git push origin master --tags
 
 工作流生成的发布附件：
 
-- `BaseConverter-SingleFile-Windows.exe`
-- `BaseConverter-Main-Windows.zip`
-- `BaseConverter-SingleFile-Source.zip`
-- `BaseConverter-Main-Source.zip`
+- `BaseConverter-单文件版本_SingleFile-Windows.exe`
+- `BaseConverter-主版本_Main-Windows.exe`
+- `BaseConverter-单文件版本_SingleFile-Source.zip`
+- `BaseConverter-主版本_Main-Source.zip`
 
 如果只想测试构建、不正式发布，可以在 Actions 页面手动运行工作流。此时四个文件
 作为 workflow artifact 提供，仅用于验证，不作为普通用户下载入口。
