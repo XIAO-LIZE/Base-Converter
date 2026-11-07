@@ -84,4 +84,16 @@ jobs:
             BaseConverter-SingleFile-Windows.exe
             BaseConverter-Main-Source.zip
             BaseConverter-SingleFile-Source.zip
+          body: |
+            ## Download / 下载
+
+            **No Python required / 无需安装 Python**
+
+            - `BaseConverter-SingleFile-Windows.exe` — single executable, double-click to run / 单文件版本，双击运行
+            - `BaseConverter-Main-Windows.zip` — extract, then run `BaseConverter-Main.exe` / 主版本，解压后运行
+            - `BaseConverter-SingleFile-Source.zip`, `BaseConverter-Main-Source.zip` — source code / 源码
+
+            Do not use the repository's "Download ZIP" source archive if you
+            only want to run the application. / 只想运行程序时，不要下载仓库的
+            “Download ZIP” 源码包。
           generate_release_notes: true
