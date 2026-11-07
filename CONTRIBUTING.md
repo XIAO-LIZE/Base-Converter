@@ -36,9 +36,13 @@ dependencies for source checkouts.
 - Build scripts: `tools/build_main.py`, `tools/build_singlefile.py`
 - Build output: `dist/BaseConverter-Main.exe`, `dist/BaseConverter-SingleFile.exe`
 - QML: `MainWindow.qml`, `pages/*Page.qml`, `components/Glass*.qml`
-- Release assets: `BaseConverter-主版本_Main-Windows.exe`,
-  `BaseConverter-单文件版本_SingleFile-Windows.exe`, and the matching `-Source`
+- Release assets: `BaseConverter-Main-Windows.exe`,
+  `BaseConverter-SingleFile-Windows.exe`, and the matching `-Source`
   archives
+
+GitHub replaces non-ASCII characters in release asset filenames, so the
+downloaded filenames stay ASCII. The workflow sets bilingual labels on those
+assets for display in the release UI.
 
 ## Portable builds
 
@@ -74,10 +78,10 @@ git push origin master --tags
 
 Release assets created by the workflow:
 
-- `BaseConverter-单文件版本_SingleFile-Windows.exe`
-- `BaseConverter-主版本_Main-Windows.exe`
-- `BaseConverter-单文件版本_SingleFile-Source.zip`
-- `BaseConverter-主版本_Main-Source.zip`
+- `BaseConverter-SingleFile-Windows.exe`
+- `BaseConverter-Main-Windows.exe`
+- `BaseConverter-SingleFile-Source.zip`
+- `BaseConverter-Main-Source.zip`
 
 To test the build without publishing a release, run the workflow manually from
 the Actions tab. The same four files are then available as workflow artifacts;

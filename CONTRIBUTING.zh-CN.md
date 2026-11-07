@@ -34,8 +34,11 @@ python -m unittest discover -s tests
 - 构建脚本：`tools/build_main.py`、`tools/build_singlefile.py`
 - 构建输出：`dist/BaseConverter-Main.exe`、`dist/BaseConverter-SingleFile.exe`
 - QML：`MainWindow.qml`、`pages/*Page.qml`、`components/Glass*.qml`
-- 发布附件：`BaseConverter-主版本_Main-Windows.exe`、
-  `BaseConverter-单文件版本_SingleFile-Windows.exe`，以及对应的 `-Source` 源码包
+- 发布附件：`BaseConverter-Main-Windows.exe`、
+  `BaseConverter-SingleFile-Windows.exe`，以及对应的 `-Source` 源码包
+
+GitHub 会替换附件文件名中的非 ASCII 字符，因此下载后的文件名保持 ASCII；
+工作流会为这些附件设置中英文标签，在发布页面显示对应版本名称。
 
 ## 便携打包
 
@@ -71,10 +74,10 @@ git push origin master --tags
 
 工作流生成的发布附件：
 
-- `BaseConverter-单文件版本_SingleFile-Windows.exe`
-- `BaseConverter-主版本_Main-Windows.exe`
-- `BaseConverter-单文件版本_SingleFile-Source.zip`
-- `BaseConverter-主版本_Main-Source.zip`
+- `BaseConverter-SingleFile-Windows.exe`
+- `BaseConverter-Main-Windows.exe`
+- `BaseConverter-SingleFile-Source.zip`
+- `BaseConverter-Main-Source.zip`
 
 如果只想测试构建、不正式发布，可以在 Actions 页面手动运行工作流。此时四个文件
 作为 workflow artifact 提供，仅用于验证，不作为普通用户下载入口。

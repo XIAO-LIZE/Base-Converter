@@ -14,7 +14,7 @@
 ### Windows 电脑没有 Python
 
 1. 打开 [Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) 页面。
-2. 下载 `BaseConverter-单文件版本_SingleFile-Windows.exe`（体积小）或 `BaseConverter-主版本_Main-Windows.exe`（完整界面）。
+2. 下载 `BaseConverter-SingleFile-Windows.exe`（标签：单文件版本 SingleFile）或 `BaseConverter-Main-Windows.exe`（标签：主版本 Main）。
 3. 双击 exe。不需要安装程序、Python、PySide6，也不需要命令行。
 
 不要下载仓库的 “Download ZIP” 源码包，也不要在没有 Python 的电脑上运行 `.bat`
@@ -27,10 +27,13 @@ GitHub 的 “Download ZIP” 下载的是完整源码（两个版本都有）�
 
 | 需要的版本 | Release 附件 |
 | ---------- | ------------ |
-| 单文件版本，无需安装 Python | `BaseConverter-单文件版本_SingleFile-Windows.exe` |
-| 主版本，无需安装 Python | `BaseConverter-主版本_Main-Windows.exe` |
-| 只要单文件版本源码 | `BaseConverter-单文件版本_SingleFile-Source.zip` |
-| 只要主版本源码 | `BaseConverter-主版本_Main-Source.zip` |
+| 单文件版本，无需安装 Python | `BaseConverter-SingleFile-Windows.exe`（单文件版本 SingleFile） |
+| 主版本，无需安装 Python | `BaseConverter-Main-Windows.exe`（主版本 Main） |
+| 只要单文件版本源码 | `BaseConverter-SingleFile-Source.zip`（单文件版本 SingleFile） |
+| 只要主版本源码 | `BaseConverter-Main-Source.zip`（主版本 Main） |
+
+GitHub 会把附件文件名中的非 ASCII 字符替换掉，所以下载后的文件名保持 ASCII；
+发布页面会用上表中的中英文标签显示版本名称，程序本身不受影响。
 
 `.bat` 启动器和源码需要 Python；已发布的 Windows 附件已经内置 Python，主版本还内置 Qt/PySide6。
 

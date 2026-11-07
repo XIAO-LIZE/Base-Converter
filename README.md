@@ -16,7 +16,7 @@ English | [简体中文](README.zh-CN.md)
 ### Windows without Python
 
 1. Open the [Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) page.
-2. Download `BaseConverter-单文件版本_SingleFile-Windows.exe` (small) or `BaseConverter-主版本_Main-Windows.exe` (full interface).
+2. Download `BaseConverter-SingleFile-Windows.exe` (label: 单文件版本 SingleFile) or `BaseConverter-Main-Windows.exe` (label: 主版本 Main).
 3. Double-click the `.exe`. No installer, Python, PySide6 or command line is needed.
 
 Do not use the repository's "Download ZIP" source archive and do not run the
@@ -29,10 +29,14 @@ editions; use a release asset when only one edition is needed.
 
 | Requirement | Release asset |
 | ----------- | ------------- |
-| Single-file edition, no Python required | `BaseConverter-单文件版本_SingleFile-Windows.exe` |
-| Main edition, no Python required | `BaseConverter-主版本_Main-Windows.exe` |
-| Single-file source only | `BaseConverter-单文件版本_SingleFile-Source.zip` |
-| Main source only | `BaseConverter-主版本_Main-Source.zip` |
+| Single-file edition, no Python required | `BaseConverter-SingleFile-Windows.exe` (单文件版本 SingleFile) |
+| Main edition, no Python required | `BaseConverter-Main-Windows.exe` (主版本 Main) |
+| Single-file source only | `BaseConverter-SingleFile-Source.zip` (单文件版本 SingleFile) |
+| Main source only | `BaseConverter-Main-Source.zip` (主版本 Main) |
+
+GitHub sanitizes non-ASCII characters in asset filenames, so the downloaded
+filenames stay ASCII. The release page shows bilingual labels for the same
+assets; the application is unchanged.
 
 The `.bat` launchers and source files require Python. The published Windows
 assets bundle Python; the main edition also bundles Qt/PySide6.
