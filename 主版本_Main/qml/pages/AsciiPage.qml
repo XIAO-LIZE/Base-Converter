@@ -49,7 +49,8 @@ Item {
                     color: theme.colors.text
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 16
-                    font.bold: true
+                    font.weight: Font.DemiBold
+                    font.letterSpacing: 0.2
                 }
 
                 GridLayout {
@@ -140,6 +141,7 @@ Item {
                 Layout.preferredHeight: 46
                 placeholder: page.s.searchPh
                 showClear: false
+                fontSize: 14
                 onEdited: {
                     page.query = text
                     backend.searchAscii(text)
@@ -178,7 +180,8 @@ Item {
                     color: theme.colors.text
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 16
-                    font.bold: true
+                    font.weight: Font.DemiBold
+                    font.letterSpacing: 0.2
                 }
 
                 Item {
@@ -195,8 +198,9 @@ Item {
                                 text: page.headerText(index)
                                 color: theme.colors.accent
                                 font.family: "Microsoft YaHei UI"
-                                font.pixelSize: 12
-                                font.bold: true
+                                font.pixelSize: 11
+                                font.weight: Font.DemiBold
+                                font.letterSpacing: 0.5
                                 horizontalAlignment: index === 5 ? Text.AlignLeft
                                                                  : Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter

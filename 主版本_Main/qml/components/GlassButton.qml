@@ -29,7 +29,8 @@ Rectangle {
         color: root.primary ? theme.colors.primaryText : theme.colors.buttonText
         font.family: "Microsoft YaHei UI"
         font.pixelSize: root.fontSize
-        font.bold: root.primary
+        font.weight: root.primary ? Font.DemiBold : Font.Medium
+        font.letterSpacing: 0.15
     }
 
     MouseArea {

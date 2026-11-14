@@ -28,7 +28,8 @@ Item {
                     color: theme.colors.text
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 16
-                    font.bold: true
+                    font.weight: Font.DemiBold
+                    font.letterSpacing: 0.2
                 }
 
                 GlassField {
@@ -71,8 +72,9 @@ Item {
                         text: page.s.addressRep
                         color: theme.colors.text
                         font.family: "Microsoft YaHei UI"
-                        font.pixelSize: 15
-                        font.bold: true
+                        font.pixelSize: 16
+                        font.weight: Font.DemiBold
+                        font.letterSpacing: 0.2
                     }
 
                     Repeater {
@@ -94,9 +96,9 @@ Item {
                                     text: modelData.label
                                     color: theme.colors.textSecondary
                                     font.family: "Microsoft YaHei UI"
-                                    font.pixelSize: 11
-                                    Layout.preferredWidth: 96
-                                    Layout.maximumWidth: 96
+                                    font.pixelSize: 12
+                                    Layout.preferredWidth: 100
+                                    Layout.maximumWidth: 100
                                     Layout.alignment: Qt.AlignVCenter
                                     elide: Text.ElideRight
                                 }
@@ -107,12 +109,12 @@ Item {
                                     text: modelData.value
                                     color: theme.colors.textValue
                                     font.family: "Consolas"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 13
                                     elide: Text.ElideRight
                                 }
                                 GlassButton {
                                     text: page.s.copy
-                                    fontSize: 11
+                                    fontSize: 12
                                     implicitHeight: 30
                                     Layout.preferredWidth: 64
                                     Layout.minimumWidth: 64
@@ -158,8 +160,9 @@ Item {
                         text: page.s.subnetInfo
                         color: theme.colors.text
                         font.family: "Microsoft YaHei UI"
-                        font.pixelSize: 15
-                        font.bold: true
+                        font.pixelSize: 16
+                        font.weight: Font.DemiBold
+                        font.letterSpacing: 0.2
                     }
 
                     Repeater {
@@ -181,9 +184,9 @@ Item {
                                     text: modelData.label
                                     color: theme.colors.textSecondary
                                     font.family: "Microsoft YaHei UI"
-                                    font.pixelSize: 11
-                                    Layout.preferredWidth: 96
-                                    Layout.maximumWidth: 96
+                                    font.pixelSize: 12
+                                    Layout.preferredWidth: 100
+                                    Layout.maximumWidth: 100
                                     Layout.alignment: Qt.AlignVCenter
                                     elide: Text.ElideRight
                                 }
@@ -194,12 +197,12 @@ Item {
                                     text: modelData.value
                                     color: theme.colors.textValue
                                     font.family: "Consolas"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 13
                                     elide: Text.ElideRight
                                 }
                                 GlassButton {
                                     text: page.s.copy
-                                    fontSize: 11
+                                    fontSize: 12
                                     implicitHeight: 30
                                     Layout.preferredWidth: 64
                                     Layout.minimumWidth: 64

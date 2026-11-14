@@ -33,10 +33,11 @@ Item {
 
                 Text {
                     text: page.s.inputBase
-                    color: theme.colors.textSecondary
+                    color: theme.colors.text
                     font.family: "Microsoft YaHei UI"
-                    font.pixelSize: 13
-                    font.bold: true
+                    font.pixelSize: 16
+                    font.weight: Font.DemiBold
+                    font.letterSpacing: 0.2
                 }
 
                 GlassSegmented {
@@ -57,7 +58,7 @@ Item {
                     Layout.preferredHeight: 50
                     placeholder: page.s.inputHint
                     monospace: true
-                    fontSize: 20
+                    fontSize: 19
                     onEdited: backend.convert(field.text, page.baseIndex)
                 }
 
@@ -67,6 +68,7 @@ Item {
                     color: backend.convError ? theme.colors.error : theme.colors.textMuted
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 12
+                    font.letterSpacing: 0.15
                     elide: Text.ElideRight
                 }
             }
@@ -87,7 +89,8 @@ Item {
                     color: theme.colors.text
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 16
-                    font.bold: true
+                    font.weight: Font.DemiBold
+                    font.letterSpacing: 0.2
                 }
 
                 Repeater {
@@ -118,7 +121,8 @@ Item {
                                     color: modelData.color
                                     font.family: "Microsoft YaHei UI"
                                     font.pixelSize: 13
-                                    font.bold: true
+                                    font.weight: Font.DemiBold
+                                    font.letterSpacing: 0.15
                                 }
                             }
 
@@ -128,8 +132,9 @@ Item {
                                 text: modelData.value === "" ? "—" : modelData.value
                                 color: theme.colors.textValue
                                 font.family: "Consolas"
-                                font.pixelSize: 17
-                                font.bold: true
+                                font.pixelSize: 18
+                                font.weight: Font.DemiBold
+                                font.letterSpacing: 0.2
                                 wrapMode: Text.WrapAnywhere
                                 maximumLineCount: 2
                                 elide: Text.ElideRight

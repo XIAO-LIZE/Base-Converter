@@ -408,7 +408,8 @@ Window {
             color: theme.colors.text
             font.family: "Microsoft YaHei UI"
             font.pixelSize: 28
-            font.bold: true
+            font.weight: Font.Bold
+            font.letterSpacing: 0.2
         }
 
         Text {
@@ -420,6 +421,7 @@ Window {
             color: theme.colors.textSecondary
             font.family: "Microsoft YaHei UI"
             font.pixelSize: 12
+            font.letterSpacing: 0.25
         }
 
         Row {
@@ -502,7 +504,8 @@ Window {
                         color: index === root.tab ? theme.colors.tabTextActive : theme.colors.textSecondary
                         font.family: "Microsoft YaHei UI"
                         font.pixelSize: 14
-                        font.bold: index === root.tab
+                        font.weight: index === root.tab ? Font.DemiBold : Font.Normal
+                        font.letterSpacing: 0.2
                         Behavior on color { ColorAnimation { duration: 160 } }
                     }
                     MouseArea {
@@ -542,29 +545,83 @@ Window {
         anchors.leftMargin: 44
         anchors.rightMargin: 44
         anchors.bottomMargin: 16
-        height: 46
-        radius: 20
-        padding: 10
+        height: 50
+        radius: 18
+        padding: 12
         tint: theme.colors.footerTint
 
-        Text {
+        Row {
+            id: statusGroup
             anchors.left: parent.left
-            anchors.leftMargin: 8
+            anchors.right: runtimeGroup.left
+            anchors.rightMargin: 16
             anchors.verticalCenter: parent.verticalCenter
-            text: backend.statusText
-            color: theme.colors.textMuted
-            font.family: "Microsoft YaHei UI"
-            font.pixelSize: 11
+            spacing: 9
+
+            Item {
+                width: 12
+                height: 12
+                anchors.verticalCenter: parent.verticalCenter
+
+                Rectangle {
+                    anchors.fill: parent
+                    radius: width / 2
+                    color: backend.statusText === root.s.copied
+                           ? theme.colors.accent : theme.colors.success
+                    opacity: 0.16
+                }
+                Rectangle {
+                    width: 6
+                    height: 6
+                    radius: width / 2
+                    anchors.centerIn: parent
+                    color: backend.statusText === root.s.copied
+                           ? theme.colors.accent : theme.colors.success
+                }
+            }
+
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                text: backend.statusText
+                color: theme.colors.textSecondary
+                font.family: "Microsoft YaHei UI"
+                font.pixelSize: 12
+                font.weight: Font.DemiBold
+                font.letterSpacing: 0.2
+            }
+
+            Rectangle {
+                width: 1
+                height: 14
+                anchors.verticalCenter: parent.verticalCenter
+                color: theme.colors.rowBorder
+            }
+
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                text: root.s.footerTagline
+                color: theme.colors.textMuted
+                font.family: "Microsoft YaHei UI"
+                font.pixelSize: 11
+                font.letterSpacing: 0.25
+                elide: Text.ElideRight
+            }
         }
 
-        Text {
+        Row {
+            id: runtimeGroup
             anchors.right: parent.right
-            anchors.rightMargin: 8
             anchors.verticalCenter: parent.verticalCenter
-            text: root.s.version
-            color: theme.colors.textMuted
-            font.family: "Microsoft YaHei UI"
-            font.pixelSize: 11
+            spacing: 8
+
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                text: root.s.version
+                color: theme.colors.textMuted
+                font.family: "Microsoft YaHei UI"
+                font.pixelSize: 10
+                font.letterSpacing: 0.4
+            }
         }
     }
 

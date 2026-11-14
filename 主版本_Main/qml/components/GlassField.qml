@@ -38,6 +38,7 @@ Item {
         placeholderTextColor: theme.colors.placeholder
         font.family: root.monospace ? "Consolas" : "Microsoft YaHei UI"
         font.pixelSize: root.fontSize
+        font.letterSpacing: root.monospace ? 0.2 : 0.1
         verticalAlignment: TextInput.AlignVCenter
         selectByMouse: true
         onTextChanged: root.edited()
@@ -63,7 +64,7 @@ Item {
             anchors.centerIn: parent
             text: "×"
             color: theme.colors.clearText
-            font.pixelSize: 19
+            font.pixelSize: 17
             font.family: "Segoe UI"
         }
         MouseArea {

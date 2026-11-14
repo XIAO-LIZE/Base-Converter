@@ -57,7 +57,8 @@ Item {
                     color: index === root.currentIndex ? theme.colors.segTextActive : theme.colors.segText
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: root.fontSize
-                    font.bold: index === root.currentIndex
+                    font.weight: index === root.currentIndex ? Font.DemiBold : Font.Normal
+                    font.letterSpacing: 0.2
                     Behavior on color { ColorAnimation { duration: 150 } }
                 }
                 MouseArea {
