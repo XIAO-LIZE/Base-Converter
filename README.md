@@ -17,7 +17,7 @@ English | [简体中文](README.zh-CN.md)
 
 1. Open the [Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) page.
 2. Download `BaseConverter_SingleFile_Windows.exe` (label: 单文件版本_SingleFile) or `BaseConverter_Main_Windows.zip` (label: 主版本_Main).
-3. Run the single-file exe directly, or extract the main zip once and run `BaseConverter_Main.exe`. No installer, Python, PySide6 or command line is needed.
+3. Run the single-file exe directly, or extract the main zip once, open the `BaseConverter_Main` folder, and run `BaseConverter_Main.exe`. No installer, Python, PySide6 or command line is needed.
 
 Do not use the repository's "Download ZIP" source archive and do not run the
 `.bat` launchers on a machine without Python; those are development entries.

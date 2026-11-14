@@ -90,7 +90,7 @@ jobs:
             **No Python required / 无需安装 Python**
 
             - `BaseConverter_SingleFile_Windows.exe`: double-click to run / 单文件版本，双击运行
-            - `BaseConverter_Main_Windows.zip`: extract once, then run `BaseConverter_Main.exe` / 主版本，解压一次后运行
+            - `BaseConverter_Main_Windows.zip`: extract once, open the `BaseConverter_Main` folder, then run `BaseConverter_Main.exe` / 主版本，解压一次后打开 `BaseConverter_Main` 文件夹，运行 `BaseConverter_Main.exe`
             - `BaseConverter_Main_Source.zip`, `BaseConverter_SingleFile_Source.zip`: source code / 源码
 
             Do not use the repository's "Download ZIP" source archive if you only
