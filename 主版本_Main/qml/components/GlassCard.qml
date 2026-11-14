@@ -8,8 +8,8 @@ Item {
     property Item backdrop: null
     property real radius: 22
     property real padding: 18
-    property color tint: Qt.rgba(0.055, 0.085, 0.13, 0.18)
-    property color edge: Qt.rgba(0.78, 0.86, 1.0, 0.16)
+    property color tint: theme.colors.cardTint
+    property color edge: theme.colors.cardEdge
     property bool blur: true
 
     default property alias contentData: content.data
@@ -21,7 +21,7 @@ Item {
         anchors.fill: parent
         anchors.topMargin: 0
         radius: root.radius
-        color: "#000000"
+        color: theme.colors.shadow
         visible: false
     }
     DropShadow {
@@ -29,8 +29,8 @@ Item {
         source: shadowShape
         radius: 28
         samples: 25
-        color: "#000000"
-        opacity: 0.45
+        color: theme.colors.shadow
+        opacity: theme.colors.shadowOpacity
         verticalOffset: 10
     }
 
@@ -90,7 +90,7 @@ Item {
         anchors.leftMargin: root.radius
         anchors.rightMargin: root.radius
         height: 1
-        color: Qt.rgba(1, 1, 1, 0.28)
+        color: theme.colors.cardHighlight
     }
 
     Item {

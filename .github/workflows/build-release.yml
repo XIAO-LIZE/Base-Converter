@@ -39,7 +39,8 @@ jobs:
       - name: Package release assets
         shell: pwsh
         run: |
-          Copy-Item "dist/BaseConverter_Main.exe" "BaseConverter_Main_Windows.exe" -Force
+          Copy-Item -LiteralPath "LICENSE" -Destination "dist/BaseConverter_Main/LICENSE" -Force
+          Compress-Archive -Path "dist/BaseConverter_Main" -DestinationPath "BaseConverter_Main_Windows.zip" -Force
           Copy-Item "dist/BaseConverter_SingleFile.exe" "BaseConverter_SingleFile_Windows.exe" -Force
 
           New-Item -ItemType Directory -Force -Path "release-src/main" | Out-Null
@@ -69,7 +70,7 @@ jobs:
         with:
           name: BaseConverter_Windows
           path: |
-            BaseConverter_Main_Windows.exe
+            BaseConverter_Main_Windows.zip
             BaseConverter_SingleFile_Windows.exe
             BaseConverter_Main_Source.zip
             BaseConverter_SingleFile_Source.zip
@@ -79,7 +80,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            BaseConverter_Main_Windows.exe
+            BaseConverter_Main_Windows.zip
             BaseConverter_SingleFile_Windows.exe
             BaseConverter_Main_Source.zip
             BaseConverter_SingleFile_Source.zip
@@ -89,7 +90,7 @@ jobs:
             **No Python required / 无需安装 Python**
 
             - `BaseConverter_SingleFile_Windows.exe`: double-click to run / 单文件版本，双击运行
-            - `BaseConverter_Main_Windows.exe`: double-click to run / 主版本，双击运行
+            - `BaseConverter_Main_Windows.zip`: extract once, then run `BaseConverter_Main.exe` / 主版本，解压一次后运行
             - `BaseConverter_Main_Source.zip`, `BaseConverter_SingleFile_Source.zip`: source code / 源码
 
             Do not use the repository's "Download ZIP" source archive if you only
@@ -111,7 +112,7 @@ jobs:
           }
           $release = Invoke-RestMethod -Uri "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ github.ref_name }}" -Headers $headers
           $labels = @{
-            "BaseConverter_Main_Windows.exe" = "主版本_Main_Windows_exe"
+            "BaseConverter_Main_Windows.zip" = "主版本_Main_Windows_zip"
             "BaseConverter_SingleFile_Windows.exe" = "单文件版本_SingleFile_Windows_exe"
             "BaseConverter_Main_Source.zip" = "主版本_Main_source"
             "BaseConverter_SingleFile_Source.zip" = "单文件版本_SingleFile_source"

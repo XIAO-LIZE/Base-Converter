@@ -13,6 +13,8 @@ from PySide6.QtGui import QGuiApplication, QIcon, QPixmap
 from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtQuickControls2 import QQuickStyle
 
+from theme import Theme
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 if str(ROOT) not in sys.path:
@@ -45,15 +47,6 @@ def _qml_entry() -> Path:
         if candidate.exists():
             return candidate
     return candidates[0]
-
-
-def _close_splash() -> None:
-    """Close the PyInstaller startup splash after QML has created its window."""
-    try:
-        import pyi_splash  # type: ignore[import-not-found]
-        pyi_splash.close()
-    except Exception:
-        pass
 
 
 def _excepthook(kind, value, tb) -> None:
@@ -117,7 +110,9 @@ def main() -> int:
 
     engine = QQmlApplicationEngine()
     backend = Backend()
+    theme = Theme()
     engine.rootContext().setContextProperty("backend", backend)
+    engine.rootContext().setContextProperty("theme", theme)
     engine.warnings.connect(
         lambda warnings: _log("QML: " + "; ".join(w.toString() for w in warnings)))
     qml = _qml_entry()
@@ -143,7 +138,6 @@ def main() -> int:
                 pass
         QTimer.singleShot(0, apply_titlebar)
         QTimer.singleShot(250, apply_titlebar)
-    QTimer.singleShot(300, _close_splash)
     return app.exec()
 
 

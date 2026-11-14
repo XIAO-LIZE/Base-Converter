@@ -13,8 +13,8 @@ Window {
     height: 940
     minimumWidth: 980
     minimumHeight: 820
-    visible: true
-    color: "#05080e"
+    visible: false
+    color: theme.colors.window
     title: "BaseConverter"
     flags: Qt.Window | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint
 
@@ -30,9 +30,9 @@ Window {
         Rectangle {
             anchors.fill: parent
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#04070d" }
-                GradientStop { position: 0.55; color: "#071120" }
-                GradientStop { position: 1.0; color: "#0a1828" }
+                GradientStop { position: 0.0; color: theme.colors.bgTop }
+                GradientStop { position: 0.55; color: theme.colors.bgMid }
+                GradientStop { position: 1.0; color: theme.colors.bgBottom }
             }
         }
 
@@ -43,9 +43,9 @@ Window {
             horizontalRadius: 680
             verticalRadius: 680
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#662563eb" }
-                GradientStop { position: 0.55; color: "#242563eb" }
-                GradientStop { position: 1.0; color: "#002563eb" }
+                GradientStop { position: 0.0; color: theme.colors.glow1 }
+                GradientStop { position: 0.55; color: theme.colors.glow2 }
+                GradientStop { position: 1.0; color: theme.colors.glow3 }
             }
         }
 
@@ -56,9 +56,9 @@ Window {
             horizontalRadius: 500
             verticalRadius: 500
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#380ea5e9" }
-                GradientStop { position: 0.6; color: "#140ea5e9" }
-                GradientStop { position: 1.0; color: "#000ea5e9" }
+                GradientStop { position: 0.0; color: theme.colors.glow4 }
+                GradientStop { position: 0.6; color: theme.colors.glow5 }
+                GradientStop { position: 1.0; color: theme.colors.glow6 }
             }
         }
 
@@ -69,9 +69,9 @@ Window {
             horizontalRadius: 460
             verticalRadius: 460
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#407c3aed" }
-                GradientStop { position: 0.6; color: "#167c3aed" }
-                GradientStop { position: 1.0; color: "#007c3aed" }
+                GradientStop { position: 0.0; color: theme.colors.glow7 }
+                GradientStop { position: 0.6; color: theme.colors.glow8 }
+                GradientStop { position: 1.0; color: theme.colors.glow9 }
             }
         }
 
@@ -82,9 +82,9 @@ Window {
             horizontalRadius: 420
             verticalRadius: 380
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#1c22d3ee" }
-                GradientStop { position: 0.55; color: "#0c22d3ee" }
-                GradientStop { position: 1.0; color: "#0022d3ee" }
+                GradientStop { position: 0.0; color: theme.colors.glow10 }
+                GradientStop { position: 0.55; color: theme.colors.glow11 }
+                GradientStop { position: 1.0; color: theme.colors.glow12 }
             }
         }
     }
@@ -125,7 +125,7 @@ Window {
             Text {
                 anchors.verticalCenter: parent.verticalCenter
                 text: root.s.appTitle
-                color: "#65778f"
+                color: theme.colors.textDim
                 font.family: "Microsoft YaHei UI"
                 font.pixelSize: 11
             }
@@ -141,11 +141,11 @@ Window {
 
             Rectangle {
                 width: 40; height: 30; radius: 8
-                color: minMouse.containsMouse ? Qt.rgba(1, 1, 1, 0.08) : "transparent"
+                color: minMouse.containsMouse ? theme.colors.controlHover : "transparent"
                 Rectangle {
                     anchors.centerIn: parent
                     width: 10; height: 1
-                    color: minMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                    color: minMouse.containsMouse ? theme.colors.iconActive : theme.colors.icon
                     antialiasing: true
                 }
                 MouseArea {
@@ -159,7 +159,7 @@ Window {
 
             Rectangle {
                 width: 40; height: 30; radius: 8
-                color: maxMouse.containsMouse ? Qt.rgba(1, 1, 1, 0.08) : "transparent"
+                color: maxMouse.containsMouse ? theme.colors.controlHover : "transparent"
                 Item {
                     anchors.centerIn: parent
                     width: 14; height: 14
@@ -170,7 +170,7 @@ Window {
                         width: 10; height: 10
                         color: "transparent"
                         border.width: 1
-                        border.color: maxMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                        border.color: maxMouse.containsMouse ? theme.colors.iconActive : theme.colors.icon
                         radius: 1
                         antialiasing: true
                     }
@@ -185,7 +185,7 @@ Window {
                             width: 9; height: 9
                             color: "transparent"
                             border.width: 1
-                            border.color: maxMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                            border.color: maxMouse.containsMouse ? theme.colors.iconActive : theme.colors.icon
                             radius: 1
                             antialiasing: true
                         }
@@ -194,7 +194,7 @@ Window {
                             width: 9; height: 9
                             color: "transparent"
                             border.width: 1
-                            border.color: maxMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                            border.color: maxMouse.containsMouse ? theme.colors.iconActive : theme.colors.icon
                             radius: 1
                             antialiasing: true
                         }
@@ -211,7 +211,7 @@ Window {
 
             Rectangle {
                 width: 40; height: 30; radius: 8
-                color: closeMouse.containsMouse ? "#e81123" : "transparent"
+                color: closeMouse.containsMouse ? theme.colors.closeHover : "transparent"
                 Item {
                     anchors.centerIn: parent
                     width: 12; height: 12
@@ -219,14 +219,14 @@ Window {
                     Rectangle {
                         anchors.centerIn: parent
                         width: 11; height: 1
-                        color: closeMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                        color: closeMouse.containsMouse ? theme.colors.onClose : theme.colors.icon
                         rotation: 45
                         antialiasing: true
                     }
                     Rectangle {
                         anchors.centerIn: parent
                         width: 11; height: 1
-                        color: closeMouse.containsMouse ? "#ffffff" : "#93a4bd"
+                        color: closeMouse.containsMouse ? theme.colors.onClose : theme.colors.icon
                         rotation: -45
                         antialiasing: true
                     }
@@ -350,7 +350,7 @@ Window {
             anchors.top: logo.top
             anchors.topMargin: -2
             text: root.s.appTitle
-            color: "#f2f7ff"
+            color: theme.colors.text
             font.family: "Microsoft YaHei UI"
             font.pixelSize: 28
             font.bold: true
@@ -362,44 +362,44 @@ Window {
             anchors.top: logo.top
             anchors.topMargin: 38
             text: root.s.appSub
-            color: "#8496ad"
+            color: theme.colors.textSecondary
             font.family: "Microsoft YaHei UI"
             font.pixelSize: 12
         }
 
-        Rectangle {
-            id: langButton
+        Row {
+            id: headerControls
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.topMargin: 6
-            width: 64
-            height: 34
-            radius: 10
+            spacing: 8
             z: 10
-            color: langButtonMouse.containsMouse ? Qt.rgba(1, 1, 1, 0.10)
-                                                 : Qt.rgba(1, 1, 1, 0.05)
-            border.width: 1
-            border.color: Qt.rgba(1, 1, 1, 0.13)
 
-            Text {
-                anchors.centerIn: parent
-                text: backend.lang === "zh" ? "EN" : "中"
-                color: "#9fb0c8"
-                font.family: "Microsoft YaHei UI"
-                font.pixelSize: 13
+            GlassSegmented {
+                id: themeSwitch
+                width: 222
+                height: 34
+                fontSize: 11
+                labels: [root.s.themeDark, root.s.themeLight, root.s.themeSystem]
+                currentIndex: theme.mode === "dark" ? 0
+                            : theme.mode === "light" ? 1 : 2
+                onActivated: function (index) {
+                    theme.setMode(["dark", "light", "system"][index])
+                }
             }
-        }
 
-        MouseArea {
-            id: langButtonMouse
-            x: parent.width - 64
-            y: 6
-            width: 64
-            height: 34
-            z: 40
-            hoverEnabled: true
-            cursorShape: Qt.PointingHandCursor
-            onClicked: backend.toggleLang()
+            GlassSegmented {
+                id: langSwitch
+                width: 100
+                height: 34
+                fontSize: 11
+                labels: ["中文", "EN"]
+                currentIndex: backend.lang === "zh" ? 0 : 1
+                onActivated: function (index) {
+                    if (index !== (backend.lang === "zh" ? 0 : 1))
+                        backend.toggleLang()
+                }
+            }
         }
     }
 
@@ -413,7 +413,7 @@ Window {
         height: 58
         radius: 18
         padding: 6
-        tint: Qt.rgba(0.04, 0.065, 0.10, 0.55)
+        tint: theme.colors.tabBarTint
 
         readonly property real gap: 6
         readonly property int count: root.s.tabs.length
@@ -427,9 +427,9 @@ Window {
             width: tabBar.itemWidth
             x: root.tab * (tabBar.itemWidth + tabBar.gap)
             radius: 13
-            color: Qt.rgba(0.30, 0.65, 1.0, 0.28)
+            color: theme.colors.tabSelection
             border.width: 1
-            border.color: Qt.rgba(0.60, 0.85, 1.0, 0.42)
+            border.color: theme.colors.tabSelectionBorder
             Behavior on x { NumberAnimation { duration: 220; easing.type: Easing.OutCubic } }
         }
 
@@ -444,7 +444,7 @@ Window {
                     Text {
                         anchors.centerIn: parent
                         text: root.s.tabs[index]
-                        color: index === root.tab ? "#f4f9ff" : "#8496ad"
+                        color: index === root.tab ? theme.colors.tabTextActive : theme.colors.textSecondary
                         font.family: "Microsoft YaHei UI"
                         font.pixelSize: 14
                         font.bold: index === root.tab
@@ -490,14 +490,14 @@ Window {
         height: 46
         radius: 20
         padding: 10
-        tint: Qt.rgba(0.035, 0.055, 0.085, 0.55)
+        tint: theme.colors.footerTint
 
         Text {
             anchors.left: parent.left
             anchors.leftMargin: 8
             anchors.verticalCenter: parent.verticalCenter
             text: backend.statusText
-            color: "#7f91aa"
+            color: theme.colors.textMuted
             font.family: "Microsoft YaHei UI"
             font.pixelSize: 11
         }
@@ -507,21 +507,20 @@ Window {
             anchors.rightMargin: 8
             anchors.verticalCenter: parent.verticalCenter
             text: root.s.version
-            color: "#7f91aa"
+            color: theme.colors.textMuted
             font.family: "Microsoft YaHei UI"
             font.pixelSize: 11
         }
     }
 
-    // Startup overlay for packaged builds. The PyInstaller splash covers the
-    // extraction phase; this gives the loaded window a short progress animation.
+    // One-time startup overlay for the first packaged launch.
     Rectangle {
         id: startupOverlay
         anchors.fill: parent
         z: 200
-        color: "#05080e"
+        color: theme.colors.window
         opacity: 1
-        visible: backend.packaged && opacity > 0
+        visible: backend.packaged && backend.firstRun && opacity > 0
 
         Behavior on opacity {
             NumberAnimation { duration: 240; easing.type: Easing.OutCubic }
@@ -542,7 +541,7 @@ Window {
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: root.s.appTitle
-                color: "#f2f7ff"
+                color: theme.colors.text
                 font.family: "Microsoft YaHei UI"
                 font.pixelSize: 26
                 font.bold: true
@@ -551,7 +550,7 @@ Window {
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: root.s.loading
-                color: "#8fb8e8"
+                color: theme.colors.textSecondary
                 font.family: "Microsoft YaHei UI"
                 font.pixelSize: 13
             }
@@ -559,17 +558,17 @@ Window {
             Rectangle {
                 width: 220; height: 3; radius: 1.5
                 anchors.horizontalCenter: parent.horizontalCenter
-                color: Qt.rgba(0.30, 0.65, 1.0, 0.18)
+                color: theme.colors.tabSelection
 
                 Rectangle {
                     height: parent.height
                     radius: 1.5
-                    color: "#4da6ff"
+                    color: theme.colors.accent
                     NumberAnimation on width {
                         from: 0; to: 220
                         duration: 900
                         easing.type: Easing.InOutCubic
-                        running: backend.packaged
+                        running: backend.packaged && backend.firstRun
                     }
                 }
             }
@@ -577,12 +576,22 @@ Window {
 
         Timer {
             interval: 1000
-            running: backend.packaged
-            onTriggered: startupOverlay.opacity = 0
+            running: backend.packaged && backend.firstRun
+            onTriggered: {
+                backend.markStarted()
+                startupOverlay.opacity = 0
+            }
         }
     }
 
     Component.onCompleted: {
+        var screenWidth = Screen.width
+        var screenHeight = Screen.height
+        if (screenWidth > 0 && screenHeight > 0) {
+            root.x = Math.max(0, Math.round((screenWidth - root.width) / 2))
+            root.y = Math.max(0, Math.round((screenHeight - root.height) / 2))
+        }
+        root.visible = true
         root.tab = 0
         backend.convert("", 0)
         backend.searchAscii("")

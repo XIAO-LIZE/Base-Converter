@@ -9,9 +9,9 @@ Item {
     property int fontSize: 17
     property bool monospace: false
     property bool showClear: true
-    property color fieldColor: Qt.rgba(0.02, 0.035, 0.06, 0.45)
-    property color borderColor: Qt.rgba(1, 1, 1, 0.13)
-    property color focusColor: "#4da6ff"
+    property color fieldColor: theme.colors.fieldTint
+    property color borderColor: theme.colors.fieldBorder
+    property color focusColor: theme.colors.accent
     property alias readOnly: field.readOnly
 
     signal edited()
@@ -33,9 +33,9 @@ Item {
         anchors.leftMargin: 15
         anchors.rightMargin: root.showClear && field.text.length > 0 ? 42 : 15
         background: null
-        color: "#eef5ff"
+        color: theme.colors.fieldText
         placeholderText: root.placeholder
-        placeholderTextColor: "#64748b"
+        placeholderTextColor: theme.colors.placeholder
         font.family: root.monospace ? "Consolas" : "Microsoft YaHei UI"
         font.pixelSize: root.fontSize
         verticalAlignment: TextInput.AlignVCenter
@@ -57,12 +57,12 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: 9
         anchors.verticalCenter: parent.verticalCenter
-        color: clearMouse.containsMouse ? Qt.rgba(1, 1, 1, 0.10)
-                                        : Qt.rgba(1, 1, 1, 0.04)
+        color: clearMouse.containsMouse ? theme.colors.clearHover
+                                        : theme.colors.clearTint
         Text {
             anchors.centerIn: parent
             text: "×"
-            color: "#93a4bd"
+            color: theme.colors.clearText
             font.pixelSize: 19
             font.family: "Segoe UI"
         }

@@ -25,7 +25,7 @@ Item {
 
                 Text {
                     text: page.s.ipTitle
-                    color: "#e8eef9"
+                    color: theme.colors.text
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 16
                     font.bold: true
@@ -44,7 +44,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
                     text: backend.ipMessage
-                    color: backend.ipError ? "#ef4444" : "#7f91aa"
+                    color: backend.ipError ? theme.colors.error : theme.colors.textSecondary
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 12
                     elide: Text.ElideRight
@@ -69,7 +69,7 @@ Item {
 
                     Text {
                         text: page.s.addressRep
-                        color: "#e8eef9"
+                        color: theme.colors.text
                         font.family: "Microsoft YaHei UI"
                         font.pixelSize: 15
                         font.bold: true
@@ -81,9 +81,9 @@ Item {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 44
                             radius: 9
-                            color: Qt.rgba(0.02, 0.035, 0.06, 0.36)
+                            color: theme.colors.rowTint
                             border.width: 1
-                            border.color: Qt.rgba(1, 1, 1, 0.08)
+                            border.color: theme.colors.rowBorder
 
                             RowLayout {
                                 anchors.fill: parent
@@ -92,7 +92,7 @@ Item {
 
                                 Text {
                                     text: modelData.label
-                                    color: "#7f91aa"
+                                    color: theme.colors.textSecondary
                                     font.family: "Microsoft YaHei UI"
                                     font.pixelSize: 11
                                     Layout.preferredWidth: 96
@@ -105,7 +105,7 @@ Item {
                                     Layout.minimumWidth: 0
                                     Layout.alignment: Qt.AlignVCenter
                                     text: modelData.value
-                                    color: "#eaf2ff"
+                                    color: theme.colors.textValue
                                     font.family: "Consolas"
                                     font.pixelSize: 12
                                     elide: Text.ElideRight
@@ -132,7 +132,7 @@ Item {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         text: page.s.ipHint
-                        color: "#65778f"
+                        color: theme.colors.textDim
                         font.family: "Microsoft YaHei UI"
                         font.pixelSize: 12
                         wrapMode: Text.WordWrap
@@ -156,7 +156,7 @@ Item {
 
                     Text {
                         text: page.s.subnetInfo
-                        color: "#e8eef9"
+                        color: theme.colors.text
                         font.family: "Microsoft YaHei UI"
                         font.pixelSize: 15
                         font.bold: true
@@ -168,9 +168,9 @@ Item {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 44
                             radius: 9
-                            color: Qt.rgba(0.02, 0.035, 0.06, 0.36)
+                            color: theme.colors.rowTint
                             border.width: 1
-                            border.color: Qt.rgba(1, 1, 1, 0.08)
+                            border.color: theme.colors.rowBorder
 
                             RowLayout {
                                 anchors.fill: parent
@@ -179,7 +179,7 @@ Item {
 
                                 Text {
                                     text: modelData.label
-                                    color: "#7f91aa"
+                                    color: theme.colors.textSecondary
                                     font.family: "Microsoft YaHei UI"
                                     font.pixelSize: 11
                                     Layout.preferredWidth: 96
@@ -192,7 +192,7 @@ Item {
                                     Layout.minimumWidth: 0
                                     Layout.alignment: Qt.AlignVCenter
                                     text: modelData.value
-                                    color: "#eaf2ff"
+                                    color: theme.colors.textValue
                                     font.family: "Consolas"
                                     font.pixelSize: 12
                                     elide: Text.ElideRight
@@ -219,7 +219,7 @@ Item {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         text: page.s.ipHint
-                        color: "#65778f"
+                        color: theme.colors.textDim
                         font.family: "Microsoft YaHei UI"
                         font.pixelSize: 12
                         wrapMode: Text.WordWrap

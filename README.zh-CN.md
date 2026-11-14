@@ -14,8 +14,8 @@
 ### Windows 电脑没有 Python
 
 1. 打开 [Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) 页面。
-2. 下载 `BaseConverter_SingleFile_Windows.exe`（标签：单文件版本_SingleFile）或 `BaseConverter_Main_Windows.exe`（标签：主版本_Main）。
-3. 双击 exe。不需要安装程序、Python、PySide6，也不需要命令行。
+2. 下载 `BaseConverter_SingleFile_Windows.exe`（标签：单文件版本_SingleFile）或 `BaseConverter_Main_Windows.zip`（标签：主版本_Main）。
+3. 单文件版本直接双击运行；主版本解压一次后运行 `BaseConverter_Main.exe`。不需要安装程序、Python、PySide6，也不需要命令行。
 
 不要下载仓库的 “Download ZIP” 源码包，也不要在没有 Python 的电脑上运行 `.bat`
 启动器；这些是开发入口。
@@ -28,9 +28,11 @@ GitHub 的 “Download ZIP” 下载的是完整源码（两个版本都有）�
 | 需要的版本 | Release 附件 |
 | ---------- | ------------ |
 | 单文件版本，无需安装 Python | `BaseConverter_SingleFile_Windows.exe`（单文件版本_SingleFile） |
-| 主版本，无需安装 Python | `BaseConverter_Main_Windows.exe`（主版本_Main） |
+| 主版本，无需安装 Python | `BaseConverter_Main_Windows.zip`（主版本_Main） |
 | 只要单文件版本源码 | `BaseConverter_SingleFile_Source.zip`（单文件版本_SingleFile） |
 | 只要主版本源码 | `BaseConverter_Main_Source.zip`（主版本_Main） |
+
+主版本使用文件夹形式，Qt 运行库只需要解压一次，之后启动很快；单文件版本是直接运行的 exe。
 
 GitHub 会把附件文件名中的非 ASCII 字符替换掉，所以下载后的文件名保持 ASCII；
 发布页面会用上表中的中英文标签显示版本名称，程序本身不受影响。
@@ -54,7 +56,7 @@ GitHub 会把附件文件名中的非 ASCII 字符替换掉，所以下载后的
 
 版本差异：
 
-- **主版本**：玻璃面板实时背景模糊、圆角玻璃卡片、无边框自绘标题栏（支持拖动/边缘缩放）、标签切换动画、悬停反馈、ASCII 查询的清空按钮，以及打包版启动时的进度提示
+- **主版本**：玻璃面板实时背景模糊、圆角玻璃卡片、无边框自绘标题栏（支持拖动/边缘缩放）、标签切换动画、悬停反馈、ASCII 查询的清空按钮、深色/浅色/跟随系统主题、语言和主题滑块、启动居中，以及打包版第一次启动时的动画提示
 - **单文件版本**：小体积单窗口、仅依赖 Python 标准库、固定表头且列宽自适应的码表、标签指示条动画和启动淡入
 - 两版均带应用图标和 AppUserModelID；单文件版本另外通过 DWM 请求深色原生标题栏与窗口圆角
 
@@ -161,9 +163,9 @@ Windows 下可双击 `主版本_Main/启动_Start.bat`。启动器会优先选�
 主版本_Main/                               主版本文件夹
 ├── main.py                              PySide6 入口
 ├── backend.py                           QML 与 core 之间的 QObject 桥接
+├── theme.py                             深色/浅色/跟随系统主题状态
 ├── requirements.txt                     PySide6 依赖
 ├── icon.png / icon.ico                  窗口与可执行文件图标
-├── splash.png                           启动画面
 ├── 启动_Start.bat                        Windows 启动器（中英文标注）
 └── qml/
     ├── MainWindow.qml                   窗口、背景、标签栏、状态栏
@@ -176,7 +178,7 @@ core/
 └── ipv4.py                              IPv4 解析、子网计算、地址分类
 
 tests/test_core.py                       共享核心单元测试
-tools/build_main.py                      主版本 PyInstaller 单文件打包脚本
+tools/build_main.py                      主版本 PyInstaller 文件夹打包脚本
 tools/build_singlefile.py                单文件版本 PyInstaller 打包脚本
 .github/workflows/build-release.yml      CI：构建两个版本并附加到 Release
 dist/                                    生成的便携版本（已被 git 忽略）
@@ -198,7 +200,8 @@ CONTRIBUTING.md / CONTRIBUTING.zh-CN.md   构建与发布说明
 - 主版本默认窗口 1180×940 逻辑像素，最小 980×820。
 - 背景模糊依赖 GPU/桌面合成。若环境不支持，玻璃卡片仍会以半透明颜色显示。
 - 主版本依赖 PySide6（LGPLv3/GPL）。分发打包版本时需附带 Qt/PySide6 许可说明，并遵守 LGPL 关于 Qt 库可替换性的要求。
-- 主版本会在 `%TEMP%\BaseConverter_Main.log` 写入启动诊断日志；程序不访问网络，也不写配置文件。
+- 主版本会在 `%TEMP%\BaseConverter_Main.log` 写入启动诊断日志；只通过 `QSettings`
+  保存主题偏好，不访问网络。
 
 ## 常见问题
 

@@ -6,9 +6,10 @@ Item {
 
     property var labels: []
     property int currentIndex: 0
-    property color accentColor: "#4da6ff"
-    property color baseColor: Qt.rgba(0.02, 0.035, 0.06, 0.32)
-    property color borderColor: Qt.rgba(1, 1, 1, 0.11)
+    property int fontSize: 14
+    property color accentColor: theme.colors.accent
+    property color baseColor: theme.colors.segTint
+    property color borderColor: theme.colors.segBorder
     signal activated(int index)
 
     implicitHeight: 40
@@ -34,9 +35,9 @@ Item {
         radius: 10
         y: root.inset
         x: root.inset + root.currentIndex * (root.itemWidth + root.gap)
-        color: Qt.rgba(0.30, 0.65, 1.0, 0.32)
+        color: theme.colors.segSelection
         border.width: 1
-        border.color: Qt.rgba(0.6, 0.85, 1.0, 0.45)
+        border.color: theme.colors.segSelectionBorder
         Behavior on x { NumberAnimation { duration: 180; easing.type: Easing.OutCubic } }
         Behavior on width { NumberAnimation { duration: 180; easing.type: Easing.OutCubic } }
     }
@@ -53,9 +54,9 @@ Item {
                 Text {
                     anchors.centerIn: parent
                     text: root.labels[index] !== undefined ? root.labels[index] : ""
-                    color: index === root.currentIndex ? "#f4f9ff" : "#8b9bb4"
+                    color: index === root.currentIndex ? theme.colors.segTextActive : theme.colors.segText
                     font.family: "Microsoft YaHei UI"
-                    font.pixelSize: 14
+                    font.pixelSize: root.fontSize
                     font.bold: index === root.currentIndex
                     Behavior on color { ColorAnimation { duration: 150 } }
                 }

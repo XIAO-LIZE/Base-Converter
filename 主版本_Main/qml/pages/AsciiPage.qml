@@ -46,7 +46,7 @@ Item {
 
                 Text {
                     text: page.s.asciiLookup
-                    color: "#e8eef9"
+                    color: theme.colors.text
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 16
                     font.bold: true
@@ -60,7 +60,7 @@ Item {
 
                     Text {
                         text: page.s.char
-                        color: "#8496ad"
+                        color: theme.colors.textSecondary
                         font.family: "Microsoft YaHei UI"
                         font.pixelSize: 13
                         Layout.preferredWidth: 82
@@ -86,8 +86,8 @@ Item {
                         Layout.fillWidth: true
                         Layout.columnSpan: 2
                         text: backend.charResult
-                        color: backend.charTone === "warn" ? "#f59e0b"
-                             : backend.charTone === "error" ? "#ef4444" : "#4da6ff"
+                        color: backend.charTone === "warn" ? theme.colors.warning
+                             : backend.charTone === "error" ? theme.colors.error : theme.colors.accent
                         font.family: "Consolas"
                         font.pixelSize: 13
                         elide: Text.ElideRight
@@ -95,7 +95,7 @@ Item {
 
                     Text {
                         text: page.s.decCode
-                        color: "#8496ad"
+                        color: theme.colors.textSecondary
                         font.family: "Microsoft YaHei UI"
                         font.pixelSize: 13
                         Layout.preferredWidth: 82
@@ -121,7 +121,7 @@ Item {
                         Layout.fillWidth: true
                         Layout.columnSpan: 2
                         text: backend.codeResult
-                        color: backend.codeTone === "error" ? "#ef4444" : "#4da6ff"
+                        color: backend.codeTone === "error" ? theme.colors.error : theme.colors.accent
                         font.family: "Consolas"
                         font.pixelSize: 13
                         elide: Text.ElideRight
@@ -148,7 +148,7 @@ Item {
 
             Text {
                 text: backend.asciiCount
-                color: "#7f91aa"
+                color: theme.colors.textMuted
                 font.family: "Microsoft YaHei UI"
                 font.pixelSize: 12
             }
@@ -175,7 +175,7 @@ Item {
 
                 Text {
                     text: page.s.asciiTitle
-                    color: "#e8eef9"
+                    color: theme.colors.text
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 16
                     font.bold: true
@@ -193,7 +193,7 @@ Item {
                                 width: page.colWidth(index)
                                 height: parent.height
                                 text: page.headerText(index)
-                                color: "#4da6ff"
+                                color: theme.colors.accent
                                 font.family: "Microsoft YaHei UI"
                                 font.pixelSize: 12
                                 font.bold: true
@@ -220,7 +220,7 @@ Item {
                             contentItem: Rectangle {
                                 implicitWidth: 6
                                 radius: 3
-                                color: "#3b4a60"
+                                color: theme.colors.scrollThumb
                             }
                             background: Rectangle { color: "transparent" }
                         }
@@ -232,8 +232,8 @@ Item {
                         Rectangle {
                             anchors.fill: parent
                             radius: 7
-                            color: index % 2 === 0 ? Qt.rgba(1, 1, 1, 0.025)
-                                                   : Qt.rgba(0, 0, 0, 0.10)
+                            color: index % 2 === 0 ? theme.colors.rowEven
+                                                   : theme.colors.rowOdd
                         }
 
                         Row {
@@ -241,28 +241,28 @@ Item {
 
                             Text {
                                 width: page.colWidth(0); height: parent.height
-                                text: code; color: "#dbe7f7"
+                                text: code; color: theme.colors.textCode
                                 font.family: "Consolas"; font.pixelSize: 12
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }
                             Text {
                                 width: page.colWidth(1); height: parent.height
-                                text: hex; color: "#9fb0c8"
+                                text: hex; color: theme.colors.tableMuted
                                 font.family: "Consolas"; font.pixelSize: 12
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }
                             Text {
                                 width: page.colWidth(2); height: parent.height
-                                text: oct; color: "#9fb0c8"
+                                text: oct; color: theme.colors.tableMuted
                                 font.family: "Consolas"; font.pixelSize: 12
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }
                             Text {
                                 width: page.colWidth(3); height: parent.height
-                                text: bin; color: "#9fb0c8"
+                                text: bin; color: theme.colors.tableMuted
                                 font.family: "Consolas"; font.pixelSize: 12
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
@@ -271,7 +271,7 @@ Item {
                                 width: page.colWidth(4); height: parent.height
                                 text: char
                                 color: parseInt(code) < 33 || parseInt(code) === 127
-                                       ? "#f0b429" : "#eaf2ff"
+                                       ? theme.colors.warning : theme.colors.textValue
                                 font.family: "Consolas"; font.pixelSize: 12
                                 font.bold: true
                                 horizontalAlignment: Text.AlignHCenter
@@ -279,7 +279,7 @@ Item {
                             }
                             Text {
                                 width: page.colWidth(5); height: parent.height
-                                text: desc; color: "#8fa2ba"
+                                text: desc; color: theme.colors.textDesc
                                 font.family: "Microsoft YaHei UI"; font.pixelSize: 12
                                 horizontalAlignment: Text.AlignLeft
                                 verticalAlignment: Text.AlignVCenter
@@ -293,7 +293,7 @@ Item {
                         anchors.centerIn: parent
                         visible: asciiModel.count === 0
                         text: page.s.nors
-                        color: "#7f91aa"
+                        color: theme.colors.textMuted
                         font.family: "Microsoft YaHei UI"
                         font.pixelSize: 13
                     }

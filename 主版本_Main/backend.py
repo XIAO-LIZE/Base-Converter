@@ -7,7 +7,8 @@ import json
 import sys
 from pathlib import Path
 
-from PySide6.QtCore import Property, QObject, QTimer, Signal, Slot
+from PySide6.QtCore import (Property, QObject, QStandardPaths, QTimer, Signal,
+                            Slot)
 from PySide6.QtGui import QGuiApplication
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -21,6 +22,7 @@ STRINGS = {
     "zh": {
         "appTitle": "BaseConverter",
         "appSub": "进制转换 · 字符编码 · IPv4 地址",
+        "themeDark": "深色", "themeLight": "浅色", "themeSystem": "跟随系统",
         "tabs": ["进制转换", "ASCII 码表", "IPv4 地址"],
         "bases": ["二进制", "八进制", "十进制", "十六进制"],
         "inputBase": "输入进制",
@@ -82,6 +84,7 @@ STRINGS = {
     "en": {
         "appTitle": "BaseConverter",
         "appSub": "Numeral conversion · Character encoding · IPv4 addressing",
+        "themeDark": "Dark", "themeLight": "Light", "themeSystem": "System",
         "tabs": ["Converter", "ASCII Table", "IPv4"],
         "bases": ["Binary", "Octal", "Decimal", "Hexadecimal"],
         "inputBase": "Input base",
@@ -174,6 +177,13 @@ class Backend(QObject):
         self._status_timer.setSingleShot(True)
         self._status_timer.setInterval(1600)
         self._status_timer.timeout.connect(self._clear_status)
+        self._first_run = not self._first_run_marker().exists()
+
+    @staticmethod
+    def _first_run_marker() -> Path:
+        base = QStandardPaths.writableLocation(
+            QStandardPaths.AppLocalDataLocation)
+        return Path(base or Path.home() / ".baseconverter") / "first_run_done"
 
     # ---- language ---------------------------------------------------
     @Property(str, notify=langChanged)
@@ -447,6 +457,19 @@ class Backend(QObject):
     @Property(bool, constant=True)
     def packaged(self):
         return getattr(sys, "frozen", False)
+
+    @Property(bool, constant=True)
+    def firstRun(self):
+        return self._first_run
+
+    @Slot()
+    def markStarted(self):
+        try:
+            marker = self._first_run_marker()
+            marker.parent.mkdir(parents=True, exist_ok=True)
+            marker.write_text("started", encoding="utf-8")
+        except OSError:
+            pass
 
     @Slot(str)
     def copy(self, text: str):

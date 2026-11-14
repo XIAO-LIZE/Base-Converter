@@ -32,9 +32,9 @@ python -m unittest discover -s tests
 - 启动器：`主版本_Main/启动_Start.bat`、
   `单文件版本_SingleFile/单文件启动_SingleFileStart.bat`
 - 构建脚本：`tools/build_main.py`、`tools/build_singlefile.py`
-- 构建输出：`dist/BaseConverter_Main.exe`、`dist/BaseConverter_SingleFile.exe`
+- 构建输出：`dist/BaseConverter_Main/`、`dist/BaseConverter_SingleFile.exe`
 - QML：`MainWindow.qml`、`pages/*Page.qml`、`components/Glass*.qml`
-- 发布附件：`BaseConverter_Main_Windows.exe`、
+- 发布附件：`BaseConverter_Main_Windows.zip`、
   `BaseConverter_SingleFile_Windows.exe`，以及对应的 `_Source` 源码包
 
 GitHub 会替换附件文件名中的非 ASCII 字符，因此下载后的文件名保持 ASCII；
@@ -52,8 +52,8 @@ python tools/build_singlefile.py
 
 输出：
 
-- `dist/BaseConverter_Main.exe`：包含 Python 与 Qt 运行时的单文件版本，体积较大
-  （约 160–180 MB），首次启动会释放运行时。
+- `dist/BaseConverter_Main/`：包含 Python 与 Qt 运行时的文件夹版本，压缩整个文件夹
+  分发；解压后启动很快（未压缩约 300–450 MB）。
 - `dist/BaseConverter_SingleFile.exe`：包含 Python 运行时的单文件版本。
 
 这两个版本的目标机器都不需要安装 Python 或 PySide6。
@@ -75,7 +75,7 @@ git push origin master --tags
 工作流生成的发布附件：
 
 - `BaseConverter_SingleFile_Windows.exe`
-- `BaseConverter_Main_Windows.exe`
+- `BaseConverter_Main_Windows.zip`
 - `BaseConverter_SingleFile_Source.zip`
 - `BaseConverter_Main_Source.zip`
 

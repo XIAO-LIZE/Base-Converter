@@ -34,9 +34,9 @@ dependencies for source checkouts.
 - Launchers: `主版本_Main/启动_Start.bat`,
   `单文件版本_SingleFile/单文件启动_SingleFileStart.bat`
 - Build scripts: `tools/build_main.py`, `tools/build_singlefile.py`
-- Build output: `dist/BaseConverter_Main.exe`, `dist/BaseConverter_SingleFile.exe`
+- Build output: `dist/BaseConverter_Main/`, `dist/BaseConverter_SingleFile.exe`
 - QML: `MainWindow.qml`, `pages/*Page.qml`, `components/Glass*.qml`
-- Release assets: `BaseConverter_Main_Windows.exe`,
+- Release assets: `BaseConverter_Main_Windows.zip`,
   `BaseConverter_SingleFile_Windows.exe`, and the matching `_Source`
   archives
 
@@ -56,8 +56,9 @@ python tools/build_singlefile.py
 
 Outputs:
 
-- `dist/BaseConverter_Main.exe` — one-file build with the Python and Qt runtimes;
-  it is large (around 160–180 MB) and extracts its runtime on first launch.
+- `dist/BaseConverter_Main/` — onedir build with the Python and Qt runtimes;
+  zip the folder once. It is large (around 300–450 MB unpacked) but starts
+  quickly after extraction.
 - `dist/BaseConverter_SingleFile.exe` — one-file build with the Python runtime.
 
 Neither build requires Python or PySide6 on the target machine.
@@ -79,7 +80,7 @@ git push origin master --tags
 Release assets created by the workflow:
 
 - `BaseConverter_SingleFile_Windows.exe`
-- `BaseConverter_Main_Windows.exe`
+- `BaseConverter_Main_Windows.zip`
 - `BaseConverter_SingleFile_Source.zip`
 - `BaseConverter_Main_Source.zip`
 

@@ -33,7 +33,7 @@ Item {
 
                 Text {
                     text: page.s.inputBase
-                    color: "#8496ad"
+                    color: theme.colors.textSecondary
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 13
                     font.bold: true
@@ -64,7 +64,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
                     text: backend.convMessage
-                    color: backend.convError ? "#ef4444" : "#7f91aa"
+                    color: backend.convError ? theme.colors.error : theme.colors.textMuted
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 12
                     elide: Text.ElideRight
@@ -84,7 +84,7 @@ Item {
 
                 Text {
                     text: page.s.resultTitle
-                    color: "#e8eef9"
+                    color: theme.colors.text
                     font.family: "Microsoft YaHei UI"
                     font.pixelSize: 16
                     font.bold: true
@@ -96,9 +96,9 @@ Item {
                         Layout.fillWidth: true
                         Layout.preferredHeight: 64
                         radius: 14
-                        color: Qt.rgba(0.02, 0.035, 0.06, 0.40)
+                        color: theme.colors.rowTint
                         border.width: 1
-                        border.color: Qt.rgba(1, 1, 1, 0.09)
+                        border.color: theme.colors.rowBorder
 
                         RowLayout {
                             anchors.fill: parent
@@ -109,7 +109,7 @@ Item {
                                 Layout.preferredWidth: 102
                                 Layout.fillHeight: true
                                 radius: 9
-                                color: Qt.rgba(0.35, 0.55, 0.9, 0.20)
+                                color: theme.colors.labelTint
                                 border.width: 1
                                 border.color: modelData.color
                                 Text {
@@ -126,7 +126,7 @@ Item {
                                 Layout.fillWidth: true
                                 Layout.alignment: Qt.AlignVCenter
                                 text: modelData.value === "" ? "—" : modelData.value
-                                color: "#eaf2ff"
+                                color: theme.colors.textValue
                                 font.family: "Consolas"
                                 font.pixelSize: 17
                                 font.bold: true

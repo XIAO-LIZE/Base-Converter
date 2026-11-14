@@ -16,8 +16,8 @@ English | [简体中文](README.zh-CN.md)
 ### Windows without Python
 
 1. Open the [Releases](https://github.com/XIAO-LIZE/Base-Converter/releases) page.
-2. Download `BaseConverter_SingleFile_Windows.exe` (label: 单文件版本_SingleFile) or `BaseConverter_Main_Windows.exe` (label: 主版本_Main).
-3. Double-click the `.exe`. No installer, Python, PySide6 or command line is needed.
+2. Download `BaseConverter_SingleFile_Windows.exe` (label: 单文件版本_SingleFile) or `BaseConverter_Main_Windows.zip` (label: 主版本_Main).
+3. Run the single-file exe directly, or extract the main zip once and run `BaseConverter_Main.exe`. No installer, Python, PySide6 or command line is needed.
 
 Do not use the repository's "Download ZIP" source archive and do not run the
 `.bat` launchers on a machine without Python; those are development entries.
@@ -30,9 +30,12 @@ editions; use a release asset when only one edition is needed.
 | Requirement | Release asset |
 | ----------- | ------------- |
 | Single-file edition, no Python required | `BaseConverter_SingleFile_Windows.exe` (单文件版本_SingleFile) |
-| Main edition, no Python required | `BaseConverter_Main_Windows.exe` (主版本_Main) |
+| Main edition, no Python required | `BaseConverter_Main_Windows.zip` (主版本_Main) |
 | Single-file source only | `BaseConverter_SingleFile_Source.zip` (单文件版本_SingleFile) |
 | Main source only | `BaseConverter_Main_Source.zip` (主版本_Main) |
+
+The main edition uses a portable folder so its Qt runtime is unpacked only once;
+later launches are fast. The single-file edition is a direct executable.
 
 GitHub sanitizes non-ASCII characters in asset filenames, so the downloaded
 filenames stay ASCII. The release page shows bilingual labels for the same
@@ -60,7 +63,7 @@ Both editions share the same core behaviour:
 
 Edition-specific:
 
-- **Main edition**: live backdrop blur on glass panels, rounded glass cards, frameless custom title bar with drag/resize support, animated tab selection, hover feedback, explicit Clear buttons for ASCII lookups, and a startup splash with progress on packaged Windows builds
+- **Main edition**: live backdrop blur on glass panels, rounded glass cards, frameless custom title bar with drag/resize support, animated tab selection, hover feedback, explicit Clear buttons for ASCII lookups, dark/light/system-following themes, header sliders for language and theme, centered startup window, and a one-time startup animation on the first packaged launch
 - **Single-file edition**: compact window, standard-library only, fixed header table with adaptive columns, animated tab underline and startup fade
 - Windows integration: application icon and AppUserModelID; the single-file edition additionally requests a dark native title bar and rounded window corners through DWM
 
@@ -221,9 +224,9 @@ single file.
 主版本_Main/                               main edition folder
 ├── main.py                              PySide6 entry point
 ├── backend.py                           QObject bridge between QML and core
+├── theme.py                             dark/light/system theme state
 ├── requirements.txt                     PySide6 dependency
 ├── icon.png / icon.ico                  window and executable icon
-├── splash.png                           startup splash image
 ├── 启动_Start.bat                        Windows launcher (Chinese + English label)
 └── qml/
     ├── MainWindow.qml                   window, background, tabs, footer
@@ -232,7 +235,7 @@ single file.
 
 core/                                    shared logic (no GUI imports)
 tests/test_core.py                       unit tests for the shared core
-tools/build_main.py                      PyInstaller one-file build for the main edition
+tools/build_main.py                      PyInstaller onedir build for the main edition
 tools/build_singlefile.py                PyInstaller build for the single-file edition
 .github/workflows/build-release.yml      CI: build and attach both editions to a release
 dist/                                    generated portable builds (ignored by git)
@@ -259,8 +262,8 @@ Windows; the `dist/` executable names are ASCII only.
   When redistributing a bundled build, include the Qt/PySide6 licence notices
   and keep the Qt libraries replaceable as required by the LGPL.
 - The main edition writes a diagnostic startup log to
-  `%TEMP%\BaseConverter_Main.log`. It does not access the network and does not
-  write configuration files.
+  `%TEMP%\BaseConverter_Main.log`. It stores only the selected theme preference
+  through `QSettings`; it does not access the network.
 
 ## Troubleshooting
 
