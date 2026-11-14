@@ -330,7 +330,7 @@ class App(tk.Tk):
         y = (self.winfo_screenheight() - gh) // 2
         self.geometry(f"+{x}+{y}")
         self._ui()
-        self._set_base(10)
+        self._set_base(2)
         self.after(20, lambda: apply_dark_titlebar(self))
         self.after(10, self._fade_in)
 

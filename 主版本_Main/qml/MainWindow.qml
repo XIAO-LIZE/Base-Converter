@@ -513,8 +513,78 @@ Window {
         }
     }
 
+    // Startup overlay for packaged builds. The PyInstaller splash covers the
+    // extraction phase; this gives the loaded window a short progress animation.
+    Rectangle {
+        id: startupOverlay
+        anchors.fill: parent
+        z: 200
+        color: "#05080e"
+        opacity: 1
+        visible: backend.packaged && opacity > 0
+
+        Behavior on opacity {
+            NumberAnimation { duration: 240; easing.type: Easing.OutCubic }
+        }
+
+        Column {
+            anchors.centerIn: parent
+            spacing: 16
+
+            Image {
+                width: 64; height: 64
+                anchors.horizontalCenter: parent.horizontalCenter
+                source: "../icon.png"
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+            }
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: root.s.appTitle
+                color: "#f2f7ff"
+                font.family: "Microsoft YaHei UI"
+                font.pixelSize: 26
+                font.bold: true
+            }
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: root.s.loading
+                color: "#8fb8e8"
+                font.family: "Microsoft YaHei UI"
+                font.pixelSize: 13
+            }
+
+            Rectangle {
+                width: 220; height: 3; radius: 1.5
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: Qt.rgba(0.30, 0.65, 1.0, 0.18)
+
+                Rectangle {
+                    height: parent.height
+                    radius: 1.5
+                    color: "#4da6ff"
+                    NumberAnimation on width {
+                        from: 0; to: 220
+                        duration: 900
+                        easing.type: Easing.InOutCubic
+                        running: backend.packaged
+                    }
+                }
+            }
+        }
+
+        Timer {
+            interval: 1000
+            running: backend.packaged
+            onTriggered: startupOverlay.opacity = 0
+        }
+    }
+
     Component.onCompleted: {
-        backend.convert("", 2)
+        root.tab = 0
+        backend.convert("", 0)
         backend.searchAscii("")
         backend.parseIp("")
     }

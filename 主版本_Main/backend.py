@@ -7,7 +7,7 @@ import json
 import sys
 from pathlib import Path
 
-from PySide6.QtCore import Property, QObject, Signal, Slot
+from PySide6.QtCore import Property, QObject, QTimer, Signal, Slot
 from PySide6.QtGui import QGuiApplication
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -76,7 +76,8 @@ STRINGS = {
         "iperrMask": "子网掩码“{s}”无效，需为连续的 1",
         "iperrInt": "IPv4 数值应在 0–4294967295 之间",
         "iperrLong": "输入过长",
-        "status": "就绪", "version": "Python 3 · PySide6 · Qt 6",
+        "status": "就绪", "loading": "正在启动…",
+        "version": "Python 3 · PySide6 · Qt 6",
     },
     "en": {
         "appTitle": "BaseConverter",
@@ -136,7 +137,8 @@ STRINGS = {
         "iperrMask": "Invalid subnet mask: {s} (must be contiguous ones)",
         "iperrInt": "IPv4 value must be between 0 and 4294967295",
         "iperrLong": "Input is too long",
-        "status": "Ready", "version": "Python 3 · PySide6 · Qt 6",
+        "status": "Ready", "loading": "Starting…",
+        "version": "Python 3 · PySide6 · Qt 6",
     },
 }
 
@@ -168,6 +170,10 @@ class Backend(QObject):
         self._ip_error = False
         self._ip_has_subnet = False
         self._status = STRINGS["zh"]["status"]
+        self._status_timer = QTimer(self)
+        self._status_timer.setSingleShot(True)
+        self._status_timer.setInterval(1600)
+        self._status_timer.timeout.connect(self._clear_status)
 
     # ---- language ---------------------------------------------------
     @Property(str, notify=langChanged)
@@ -438,6 +444,10 @@ class Backend(QObject):
     def statusText(self):
         return self._status
 
+    @Property(bool, constant=True)
+    def packaged(self):
+        return getattr(sys, "frozen", False)
+
     @Slot(str)
     def copy(self, text: str):
         if not text:
@@ -445,3 +455,9 @@ class Backend(QObject):
         QGuiApplication.clipboard().setText(text)
         self._status = STRINGS[self._lang]["copied"]
         self.statusChanged.emit()
+        self._status_timer.start()
+
+    def _clear_status(self) -> None:
+        if self._status:
+            self._status = ""
+            self.statusChanged.emit()

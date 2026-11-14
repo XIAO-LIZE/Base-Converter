@@ -60,6 +60,7 @@ def main() -> int:
         "--noconfirm", "--clean", "--windowed", "--onefile",
         "--name", "BaseConverter_Main",
         "--icon", str(ROOT / "主版本_Main" / "icon.ico"),
+        "--splash", str(ROOT / "主版本_Main" / "splash.png"),
         "--paths", str(ROOT),
         "--add-data", f"{qml_dir}{os.pathsep}qml",
         "--add-data", f"{icon}{os.pathsep}.",

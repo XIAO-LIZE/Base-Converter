@@ -47,6 +47,15 @@ def _qml_entry() -> Path:
     return candidates[0]
 
 
+def _close_splash() -> None:
+    """Close the PyInstaller startup splash after QML has created its window."""
+    try:
+        import pyi_splash  # type: ignore[import-not-found]
+        pyi_splash.close()
+    except Exception:
+        pass
+
+
 def _excepthook(kind, value, tb) -> None:
     _log("".join(traceback.format_exception(kind, value, tb)))
     sys.__excepthook__(kind, value, tb)
@@ -134,6 +143,7 @@ def main() -> int:
                 pass
         QTimer.singleShot(0, apply_titlebar)
         QTimer.singleShot(250, apply_titlebar)
+    QTimer.singleShot(300, _close_splash)
     return app.exec()
 
 

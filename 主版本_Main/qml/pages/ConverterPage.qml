@@ -8,7 +8,7 @@ Item {
 
     property Item backdrop
     property var s: backend.strings
-    property int baseIndex: 2
+    property int baseIndex: 0
 
     property var resultRows: [
         { name: page.s.bases[0], value: backend.binary, color: "#10b981" },
@@ -148,7 +148,7 @@ Item {
         }
     }
 
-    Component.onCompleted: backend.convert("", 2)
+    Component.onCompleted: backend.convert("", 0)
 
     Connections {
         target: backend

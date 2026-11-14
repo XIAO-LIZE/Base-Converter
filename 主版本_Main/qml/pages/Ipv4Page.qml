@@ -95,10 +95,13 @@ Item {
                                     color: "#7f91aa"
                                     font.family: "Microsoft YaHei UI"
                                     font.pixelSize: 11
-                                    Layout.preferredWidth: 92
+                                    Layout.preferredWidth: 96
+                                    Layout.maximumWidth: 96
+                                    elide: Text.ElideRight
                                 }
                                 Text {
                                     Layout.fillWidth: true
+                                    Layout.minimumWidth: 0
                                     text: modelData.value
                                     color: "#eaf2ff"
                                     font.family: "Consolas"
@@ -108,6 +111,10 @@ Item {
                                 GlassButton {
                                     text: page.s.copy
                                     fontSize: 11
+                                    Layout.preferredWidth: 64
+                                    Layout.minimumWidth: 64
+                                    Layout.maximumWidth: 64
+                                    Layout.alignment: Qt.AlignVCenter
                                     onClicked: backend.copy(modelData.value)
                                 }
                             }
@@ -169,10 +176,13 @@ Item {
                                     color: "#7f91aa"
                                     font.family: "Microsoft YaHei UI"
                                     font.pixelSize: 11
-                                    Layout.preferredWidth: 92
+                                    Layout.preferredWidth: 96
+                                    Layout.maximumWidth: 96
+                                    elide: Text.ElideRight
                                 }
                                 Text {
                                     Layout.fillWidth: true
+                                    Layout.minimumWidth: 0
                                     text: modelData.value
                                     color: "#eaf2ff"
                                     font.family: "Consolas"
@@ -182,6 +192,10 @@ Item {
                                 GlassButton {
                                     text: page.s.copy
                                     fontSize: 11
+                                    Layout.preferredWidth: 64
+                                    Layout.minimumWidth: 64
+                                    Layout.maximumWidth: 64
+                                    Layout.alignment: Qt.AlignVCenter
                                     onClicked: backend.copy(modelData.value)
                                 }
                             }

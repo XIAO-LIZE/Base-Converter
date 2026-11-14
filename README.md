@@ -60,7 +60,7 @@ Both editions share the same core behaviour:
 
 Edition-specific:
 
-- **Main edition**: live backdrop blur on glass panels, rounded glass cards, frameless custom title bar with drag/resize support, animated tab selection, hover feedback, explicit Clear buttons for ASCII lookups
+- **Main edition**: live backdrop blur on glass panels, rounded glass cards, frameless custom title bar with drag/resize support, animated tab selection, hover feedback, explicit Clear buttons for ASCII lookups, and a startup splash with progress on packaged Windows builds
 - **Single-file edition**: compact window, standard-library only, fixed header table with adaptive columns, animated tab underline and startup fade
 - Windows integration: application icon and AppUserModelID; the single-file edition additionally requests a dark native title bar and rounded window corners through DWM
 
@@ -223,6 +223,7 @@ single file.
 ├── backend.py                           QObject bridge between QML and core
 ├── requirements.txt                     PySide6 dependency
 ├── icon.png / icon.ico                  window and executable icon
+├── splash.png                           startup splash image
 ├── 启动_Start.bat                        Windows launcher (Chinese + English label)
 └── qml/
     ├── MainWindow.qml                   window, background, tabs, footer
