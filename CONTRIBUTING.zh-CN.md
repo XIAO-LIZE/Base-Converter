@@ -34,6 +34,8 @@ python -m unittest discover -s tests
 - 构建脚本：`tools/build_main.py`、`tools/build_singlefile.py`
 - 构建输出：`dist/BaseConverter_Main/`、`dist/BaseConverter_SingleFile.exe`
 - QML：`MainWindow.qml`、`pages/*Page.qml`、`components/Glass*.qml`
+- 玻璃着色器：`qml/shaders/glass.frag`，用 Qt shader baker 编译为
+  `glass.frag.qsb`（`qsb --qt6 glass.frag -o glass.frag.qsb`）
 - 发布附件：`BaseConverter_Main_Windows.zip`、
   `BaseConverter_SingleFile_Windows.exe`，以及对应的 `_Source` 源码包
 

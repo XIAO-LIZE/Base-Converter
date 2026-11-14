@@ -36,6 +36,8 @@ dependencies for source checkouts.
 - Build scripts: `tools/build_main.py`, `tools/build_singlefile.py`
 - Build output: `dist/BaseConverter_Main/`, `dist/BaseConverter_SingleFile.exe`
 - QML: `MainWindow.qml`, `pages/*Page.qml`, `components/Glass*.qml`
+- Glass shader: `qml/shaders/glass.frag` compiled to `glass.frag.qsb` with
+  the Qt shader baker (`qsb --qt6 glass.frag -o glass.frag.qsb`)
 - Release assets: `BaseConverter_Main_Windows.zip`,
   `BaseConverter_SingleFile_Windows.exe`, and the matching `_Source`
   archives

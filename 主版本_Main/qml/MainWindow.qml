@@ -13,7 +13,9 @@ Window {
     height: 940
     minimumWidth: 980
     minimumHeight: 820
-    visible: false
+    x: Screen.width > 0 ? Math.max(0, Math.round((Screen.width - width) / 2)) : 0
+    y: Screen.height > 0 ? Math.max(0, Math.round((Screen.height - height) / 2)) : 0
+    visible: true
     color: theme.colors.window
     title: "BaseConverter"
     flags: Qt.Window | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint
@@ -86,6 +88,59 @@ Window {
                 GradientStop { position: 0.55; color: theme.colors.glow11 }
                 GradientStop { position: 1.0; color: theme.colors.glow12 }
             }
+        }
+
+        // Broad colour fields and grain give the glass something to refract.
+        RadialGradient {
+            width: parent.width * 0.50
+            height: width
+            x: parent.width * 0.50
+            y: parent.height * 0.02
+            horizontalOffset: width * 0.5
+            verticalOffset: height * 0.5
+            horizontalRadius: width * 0.5
+            verticalRadius: height * 0.5
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: theme.colors.decor1 }
+                GradientStop { position: 0.62; color: theme.colors.decor1 }
+                GradientStop { position: 1.0; color: "#00000000" }
+            }
+        }
+
+        RadialGradient {
+            width: parent.width * 0.46
+            height: width
+            x: -parent.width * 0.15
+            y: parent.height * 0.58
+            horizontalOffset: width * 0.5
+            verticalOffset: height * 0.5
+            horizontalRadius: width * 0.5
+            verticalRadius: height * 0.5
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: theme.colors.decor2 }
+                GradientStop { position: 0.60; color: theme.colors.decor2 }
+                GradientStop { position: 1.0; color: "#00000000" }
+            }
+        }
+
+        Repeater {
+            model: 4
+            Rectangle {
+                width: 1
+                height: parent.height * 1.45
+                x: parent.width * (0.14 + index * 0.19)
+                y: -parent.height * 0.20
+                rotation: -18
+                color: theme.colors.decorLine
+            }
+        }
+
+        Image {
+            anchors.fill: parent
+            source: "assets/noise.png"
+            fillMode: Image.Tile
+            smooth: false
+            opacity: theme.colors.noiseOpacity
         }
     }
 
@@ -585,13 +640,6 @@ Window {
     }
 
     Component.onCompleted: {
-        var screenWidth = Screen.width
-        var screenHeight = Screen.height
-        if (screenWidth > 0 && screenHeight > 0) {
-            root.x = Math.max(0, Math.round((screenWidth - root.width) / 2))
-            root.y = Math.max(0, Math.round((screenHeight - root.height) / 2))
-        }
-        root.visible = true
         root.tab = 0
         backend.convert("", 0)
         backend.searchAscii("")

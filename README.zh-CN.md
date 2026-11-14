@@ -56,7 +56,7 @@ GitHub 会把附件文件名中的非 ASCII 字符替换掉，所以下载后的
 
 版本差异：
 
-- **主版本**：玻璃面板实时背景模糊、圆角玻璃卡片、无边框自绘标题栏（支持拖动/边缘缩放）、标签切换动画、悬停反馈、ASCII 查询的清空按钮、深色/浅色/跟随系统主题、语言和主题滑块、启动居中，以及打包版第一次启动时的动画提示
+- **主版本**：玻璃面板实时背景模糊、圆角玻璃卡片、无边框自绘标题栏（支持拖动/边缘缩放）、标签切换动画、悬停反馈、ASCII 查询的清空按钮、带边缘折射和高光的液态玻璃、深色/浅色/跟随系统主题、语言和主题滑块、启动居中，以及打包版第一次启动时的动画提示
 - **单文件版本**：小体积单窗口、仅依赖 Python 标准库、固定表头且列宽自适应的码表、标签指示条动画和启动淡入
 - 两版均带应用图标和 AppUserModelID；单文件版本另外通过 DWM 请求深色原生标题栏与窗口圆角
 
@@ -170,7 +170,9 @@ Windows 下可双击 `主版本_Main/启动_Start.bat`。启动器会优先选�
 └── qml/
     ├── MainWindow.qml                   窗口、背景、标签栏、状态栏
     ├── components/                      GlassButton、GlassCard、GlassField、GlassSegmented
-    └── pages/                           ConverterPage、AsciiPage、Ipv4Page
+    ├── pages/                           ConverterPage、AsciiPage、Ipv4Page
+    ├── assets/noise.png                 玻璃后面的细微噪点
+    └── shaders/glass.frag.qsb           编译后的折射/高光着色器
 
 core/
 ├── bases.py                             进制解析/格式化、前缀、错误码
