@@ -20,6 +20,7 @@ from core.bases import (BASE_NAMES, BASES, DIGSET, MAX_INPUT, PREFIX,
                         format_value, parse_number)
 from core.ascii_data import ADATA, EN_CTRL_NAMES, search as search_ascii
 from core.ipv4 import dotted as dotted_ip, parse as parse_ip_input
+from core.version import __version__ as APP_VERSION
 
 APP_NAME = "BaseConverter"
 APP_ID = "XiaoLize.BaseConverter"
@@ -118,7 +119,6 @@ WIN_W, WIN_H = 760, 800
 TR = {
   "zh": {
     "ready":"就绪",
-    "footerTagline":"本地处理 · 数据不上传",
     "sub":"进制转换 · 字符编码 · IPv4 地址",
     "src":"输入进制",
     "bases":["二进制","八进制","十进制","十六进制"],
@@ -175,7 +175,6 @@ TR = {
   },
   "en": {
     "ready":"Ready",
-    "footerTagline":"Local processing · nothing leaves this device",
     "sub":"Numeral conversion · Character encoding · IPv4 addressing",
     "src":"Input base",
     "bases":["Binary","Octal","Decimal","Hexadecimal"],
@@ -599,12 +598,11 @@ class App(tk.Tk):
                                     fg=SUCCESS, anchor="w")
         self._lbl_status.pack(side=tk.LEFT, padx=(7, 10))
 
-        tk.Frame(inner, bg=BORDER, width=1, height=14
-                 ).pack(side=tk.LEFT, padx=(0, 10), pady=(1, 0))
-        tk.Label(inner, textvariable=self.V("footerTagline"), font=FT_SM,
-                 bg=SURFACE, fg=TEXT2, anchor="w").pack(side=tk.LEFT)
-
         tk.Label(inner, text=self._runtime_info(), font=FT_SM, bg=SURFACE,
+                 fg=TEXT2).pack(side=tk.RIGHT)
+        tk.Frame(inner, bg=BORDER, width=1, height=12
+                 ).pack(side=tk.RIGHT, padx=(8, 8))
+        tk.Label(inner, text=f"v{APP_VERSION}", font=FT_SMB, bg=SURFACE,
                  fg=TEXT2).pack(side=tk.RIGHT)
 
         self._status(self.t("ready"), transient=False)

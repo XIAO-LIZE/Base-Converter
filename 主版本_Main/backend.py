@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from core import ascii_data, bases, ipv4  # noqa: E402
+from core.version import __version__ as APP_VERSION  # noqa: E402
 
 
 STRINGS = {
@@ -79,7 +80,6 @@ STRINGS = {
         "iperrInt": "IPv4 数值应在 0–4294967295 之间",
         "iperrLong": "输入过长",
         "status": "就绪", "loading": "正在启动…",
-        "footerTagline": "本地处理 · 数据不上传",
         "version": "Python 3 · PySide6 · Qt 6",
     },
     "en": {
@@ -142,7 +142,6 @@ STRINGS = {
         "iperrInt": "IPv4 value must be between 0 and 4294967295",
         "iperrLong": "Input is too long",
         "status": "Ready", "loading": "Starting…",
-        "footerTagline": "Local processing · nothing leaves this device",
         "version": "Python 3 · PySide6 · Qt 6",
     },
 }
@@ -455,6 +454,10 @@ class Backend(QObject):
     @Property(str, notify=statusChanged)
     def statusText(self):
         return self._status
+
+    @Property(str, constant=True)
+    def appVersion(self):
+        return APP_VERSION
 
     @Property(bool, constant=True)
     def packaged(self):

@@ -553,8 +553,6 @@ Window {
         Row {
             id: statusGroup
             anchors.left: parent.left
-            anchors.right: runtimeGroup.left
-            anchors.rightMargin: 16
             anchors.verticalCenter: parent.verticalCenter
             spacing: 9
 
@@ -589,30 +587,30 @@ Window {
                 font.weight: Font.DemiBold
                 font.letterSpacing: 0.2
             }
-
-            Rectangle {
-                width: 1
-                height: 14
-                anchors.verticalCenter: parent.verticalCenter
-                color: theme.colors.rowBorder
-            }
-
-            Text {
-                anchors.verticalCenter: parent.verticalCenter
-                text: root.s.footerTagline
-                color: theme.colors.textMuted
-                font.family: "Microsoft YaHei UI"
-                font.pixelSize: 11
-                font.letterSpacing: 0.25
-                elide: Text.ElideRight
-            }
         }
 
         Row {
             id: runtimeGroup
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
-            spacing: 8
+            spacing: 9
+
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                text: "v" + backend.appVersion
+                color: theme.colors.textSecondary
+                font.family: "Microsoft YaHei UI"
+                font.pixelSize: 11
+                font.weight: Font.DemiBold
+                font.letterSpacing: 0.3
+            }
+
+            Rectangle {
+                width: 1
+                height: 12
+                anchors.verticalCenter: parent.verticalCenter
+                color: theme.colors.rowBorder
+            }
 
             Text {
                 anchors.verticalCenter: parent.verticalCenter
