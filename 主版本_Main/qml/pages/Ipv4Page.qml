@@ -79,7 +79,7 @@ Item {
                         model: backend.ipRows
                         delegate: Rectangle {
                             Layout.fillWidth: true
-                            Layout.preferredHeight: 40
+                            Layout.preferredHeight: 44
                             radius: 9
                             color: Qt.rgba(0.02, 0.035, 0.06, 0.36)
                             border.width: 1
@@ -87,7 +87,7 @@ Item {
 
                             RowLayout {
                                 anchors.fill: parent
-                                anchors.margins: 8
+                                anchors.margins: 7
                                 spacing: 10
 
                                 Text {
@@ -97,11 +97,13 @@ Item {
                                     font.pixelSize: 11
                                     Layout.preferredWidth: 96
                                     Layout.maximumWidth: 96
+                                    Layout.alignment: Qt.AlignVCenter
                                     elide: Text.ElideRight
                                 }
                                 Text {
                                     Layout.fillWidth: true
                                     Layout.minimumWidth: 0
+                                    Layout.alignment: Qt.AlignVCenter
                                     text: modelData.value
                                     color: "#eaf2ff"
                                     font.family: "Consolas"
@@ -111,9 +113,13 @@ Item {
                                 GlassButton {
                                     text: page.s.copy
                                     fontSize: 11
+                                    implicitHeight: 30
                                     Layout.preferredWidth: 64
                                     Layout.minimumWidth: 64
                                     Layout.maximumWidth: 64
+                                    Layout.preferredHeight: 30
+                                    Layout.minimumHeight: 30
+                                    Layout.maximumHeight: 30
                                     Layout.alignment: Qt.AlignVCenter
                                     onClicked: backend.copy(modelData.value)
                                 }
@@ -160,7 +166,7 @@ Item {
                         model: backend.ipSubnetRows
                         delegate: Rectangle {
                             Layout.fillWidth: true
-                            Layout.preferredHeight: 40
+                            Layout.preferredHeight: 44
                             radius: 9
                             color: Qt.rgba(0.02, 0.035, 0.06, 0.36)
                             border.width: 1
@@ -168,7 +174,7 @@ Item {
 
                             RowLayout {
                                 anchors.fill: parent
-                                anchors.margins: 8
+                                anchors.margins: 7
                                 spacing: 10
 
                                 Text {
@@ -178,11 +184,13 @@ Item {
                                     font.pixelSize: 11
                                     Layout.preferredWidth: 96
                                     Layout.maximumWidth: 96
+                                    Layout.alignment: Qt.AlignVCenter
                                     elide: Text.ElideRight
                                 }
                                 Text {
                                     Layout.fillWidth: true
                                     Layout.minimumWidth: 0
+                                    Layout.alignment: Qt.AlignVCenter
                                     text: modelData.value
                                     color: "#eaf2ff"
                                     font.family: "Consolas"
@@ -192,9 +200,13 @@ Item {
                                 GlassButton {
                                     text: page.s.copy
                                     fontSize: 11
+                                    implicitHeight: 30
                                     Layout.preferredWidth: 64
                                     Layout.minimumWidth: 64
                                     Layout.maximumWidth: 64
+                                    Layout.preferredHeight: 30
+                                    Layout.minimumHeight: 30
+                                    Layout.maximumHeight: 30
                                     Layout.alignment: Qt.AlignVCenter
                                     onClicked: backend.copy(modelData.value)
                                 }
