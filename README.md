@@ -64,7 +64,7 @@ Both editions share the same core behaviour:
 Edition-specific:
 
 - **Main edition**: live backdrop blur on glass panels, rounded glass cards, frameless custom title bar with drag/resize support, animated tab selection, hover feedback, explicit Clear buttons for ASCII lookups, refraction/lensing glass with edge highlights, dark/light/system-following themes, header sliders for language and theme, centered startup window, and a one-time startup animation on the first packaged launch
-- **Single-file edition**: compact window, standard-library only, fixed header table with adaptive columns, animated tab underline and startup fade
+- **Single-file edition**: compact window, standard-library only, fixed header table with adaptive columns, language slider, a status bar with ready/privacy text, aligned IPv4 copy buttons, animated tab underline and startup fade
 - Windows integration: application icon and AppUserModelID; the single-file edition additionally requests a dark native title bar and rounded window corners through DWM
 
 ## Requirements

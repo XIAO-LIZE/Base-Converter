@@ -85,16 +85,28 @@ TEXT2    = "#8899aa"
 BORDER   = "#1e3048"
 BASE_ACCENT = {2: SUCCESS, 8: "#3b82f6", 10: "#475569", 16: WARNING}
 
-FT_TTL = ("Microsoft YaHei UI", 20, "bold")
-FT_H2  = ("Microsoft YaHei UI", 14, "bold")
-FT_BD  = ("Microsoft YaHei UI", 11)
-FT_BB  = ("Microsoft YaHei UI", 11, "bold")
-FT_SM  = ("Microsoft YaHei UI", 10)
-FT_SMB = ("Microsoft YaHei UI", 10, "bold")
-FT_ML  = ("Consolas", 16, "bold")
-FT_MS  = ("Consolas", 13)
-FT_CD  = ("Consolas", 11)
-FT_CB  = ("Consolas", 11, "bold")
+FT_TTL = ("Microsoft YaHei UI", 24, "bold")
+FT_H2  = ("Microsoft YaHei UI", 16, "bold")
+FT_BD  = ("Microsoft YaHei UI", 12)
+FT_BB  = ("Microsoft YaHei UI", 12, "bold")
+FT_SM  = ("Microsoft YaHei UI", 11)
+FT_SMB = ("Microsoft YaHei UI", 11, "bold")
+FT_ML  = ("Consolas", 18, "bold")
+FT_MS  = ("Consolas", 14)
+FT_CD  = ("Consolas", 12)
+FT_CB  = ("Consolas", 12, "bold")
+
+
+def _rounded_rect(canvas: tk.Canvas, x1: float, y1: float, x2: float, y2: float,
+                  radius: float, **kwargs) -> int:
+    """Draw a smooth rounded rectangle on a Tk canvas."""
+    r = max(0, min(radius, (x2 - x1) / 2, (y2 - y1) / 2))
+    points = [
+        x1 + r, y1, x2 - r, y1, x2, y1, x2, y1 + r,
+        x2, y2 - r, x2, y2, x2 - r, y2, x1 + r, y2,
+        x1, y2, x1, y2 - r, x1, y1 + r, x1, y1,
+    ]
+    return canvas.create_polygon(points, smooth=True, splinesteps=24, **kwargs)
 
 IP_ROWS = ("ipDotted", "ipDecimal", "ipHex", "ipBinary", "ipScope")
 IP_SUB_ROWS = ("ipMask", "ipWildcard", "ipNetwork", "ipBroadcast",
@@ -105,6 +117,8 @@ WIN_W, WIN_H = 760, 800
 
 TR = {
   "zh": {
+    "ready":"就绪",
+    "footerTagline":"本地处理 · 数据不上传",
     "sub":"进制转换 · 字符编码 · IPv4 地址",
     "src":"输入进制",
     "bases":["二进制","八进制","十进制","十六进制"],
@@ -160,6 +174,8 @@ TR = {
     "ipScopePublic":"公网地址",
   },
   "en": {
+    "ready":"Ready",
+    "footerTagline":"Local processing · nothing leaves this device",
     "sub":"Numeral conversion · Character encoding · IPv4 addressing",
     "src":"Input base",
     "bases":["Binary","Octal","Decimal","Hexadecimal"],
@@ -219,8 +235,7 @@ TR = {
 # column widths are set in pixels in _build_table
 _COLS = ("DEC", "HEX", "OCT", "BIN", "Char")
 
-# label on the language toggle: the language you would switch to
-LANG_LABEL = {"zh": "EN", "en": "中"}
+# language slider labels live on the canvas in _draw_lang_slider
 
 
 def system_lang() -> str:
@@ -391,12 +406,12 @@ class App(tk.Tk):
             tk.Label(hf, image=self._logo, bg=BG).pack(side=tk.LEFT, padx=(0, 10))
         tk.Label(hf, text=APP_NAME, font=FT_TTL, bg=BG, fg=ACCENT
                  ).pack(side=tk.LEFT)
-        self._btn_lang = tk.Button(hf, text=LANG_LABEL[self.lang], font=FT_SM,
-                                   bg=SURFACE2, fg=TEXT2,
-                                   relief=tk.FLAT, bd=0, padx=14, pady=4,
-                                   cursor="hand2", command=self._switch_lang)
-        self._btn_lang.pack(side=tk.RIGHT)
-        self._hoverable(self._btn_lang, SURFACE2, BORDER)
+        self._lang_slider = tk.Canvas(
+            hf, width=int(108 * self._scale), height=int(34 * self._scale),
+            bg=BG, highlightthickness=0, bd=0, cursor="hand2")
+        self._lang_slider.pack(side=tk.RIGHT)
+        self._lang_slider.bind("<Button-1>", self._lang_click)
+        self._draw_lang_slider()
         tk.Label(self, textvariable=self.V("sub"), font=FT_SM, bg=BG, fg=TEXT2
                  ).pack(pady=(4, 16))
 
@@ -571,12 +586,28 @@ class App(tk.Tk):
         bar.pack(side=tk.BOTTOM, fill=tk.X)
         tk.Frame(bar, bg=BORDER, height=1).pack(side=tk.TOP, fill=tk.X)
         inner = tk.Frame(bar, bg=SURFACE)
-        inner.pack(fill=tk.X, padx=16, pady=(4, 5))
-        self._lbl_status = tk.Label(inner, text="", font=FT_SM, bg=SURFACE,
+        inner.pack(fill=tk.X, padx=18, pady=(5, 6))
+
+        dot_size = max(8, int(9 * self._scale))
+        self._dot = tk.Canvas(inner, width=dot_size, height=dot_size,
+                              bg=SURFACE, highlightthickness=0, bd=0)
+        self._dot.pack(side=tk.LEFT, pady=(2, 0))
+        self._dot_id = self._dot.create_oval(1, 1, dot_size - 1, dot_size - 1,
+                                             fill=SUCCESS, outline="")
+
+        self._lbl_status = tk.Label(inner, text="", font=FT_SMB, bg=SURFACE,
                                     fg=SUCCESS, anchor="w")
-        self._lbl_status.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        self._lbl_status.pack(side=tk.LEFT, padx=(7, 10))
+
+        tk.Frame(inner, bg=BORDER, width=1, height=14
+                 ).pack(side=tk.LEFT, padx=(0, 10), pady=(1, 0))
+        tk.Label(inner, textvariable=self.V("footerTagline"), font=FT_SM,
+                 bg=SURFACE, fg=TEXT2, anchor="w").pack(side=tk.LEFT)
+
         tk.Label(inner, text=self._runtime_info(), font=FT_SM, bg=SURFACE,
                  fg=TEXT2).pack(side=tk.RIGHT)
+
+        self._status(self.t("ready"), transient=False)
 
     @staticmethod
     def _runtime_info() -> str:
@@ -585,8 +616,8 @@ class App(tk.Tk):
     def _mk_tab1(self):
         p = self._tab1
 
-        tk.Label(p, textvariable=self.V("src"), font=FT_BD, bg=BG, fg=TEXT2
-                 ).pack(pady=(24, 6))
+        tk.Label(p, textvariable=self.V("src"), font=FT_H2, bg=BG, fg=TEXT
+                 ).pack(anchor="w", padx=50, pady=(24, 6))
 
         btn_row = tk.Frame(p, bg=BG)
         btn_row.pack(pady=(0, 10))
@@ -604,7 +635,7 @@ class App(tk.Tk):
 
         ef = tk.Frame(p, bg=BG)
         ef.pack(pady=(12, 6))
-        self._entry = tk.Entry(ef, font=("Consolas", 24, "bold"), width=22,
+        self._entry = tk.Entry(ef, font=("Consolas", 20, "bold"), width=22,
                                bg=SURFACE, fg=TEXT, insertbackground=ACCENT,
                                relief=tk.FLAT, justify=tk.CENTER,
                                highlightthickness=2, highlightcolor=ACCENT,
@@ -767,11 +798,11 @@ class App(tk.Tk):
         p.bind("<Configure>", self._ip_body_cfg)
         self._ip_canvas.bind("<Configure>", self._ip_canvas_cfg)
 
-        tk.Label(p, textvariable=self.V("iplbl"), font=FT_BD, bg=BG, fg=TEXT2
-                 ).pack(pady=(18, 6))
+        tk.Label(p, textvariable=self.V("iplbl"), font=FT_H2, bg=BG, fg=TEXT
+                 ).pack(anchor="w", padx=50, pady=(18, 6))
         ef = tk.Frame(p, bg=BG)
         ef.pack()
-        self._ip_entry = tk.Entry(ef, font=("Consolas", 20, "bold"), width=26,
+        self._ip_entry = tk.Entry(ef, font=("Consolas", 19, "bold"), width=26,
                                   bg=SURFACE, fg=TEXT, insertbackground=ACCENT,
                                   relief=tk.FLAT, justify=tk.CENTER,
                                   highlightthickness=2, highlightcolor=ACCENT,
@@ -838,18 +869,20 @@ class App(tk.Tk):
 
     def _ip_row(self, parent: tk.Misc, key: str) -> None:
         row = tk.Frame(parent, bg=SURFACE, highlightthickness=1,
-                       highlightbackground=BORDER)
+                       highlightbackground=BORDER,
+                       height=int(40 * self._scale))
         row.pack(fill=tk.X, pady=1)
+        row.pack_propagate(False)
         tk.Label(row, textvariable=self.V(key), font=FT_SMB, bg=SURFACE2,
                  fg=TEXT2, width=18, anchor="w", padx=10, pady=4
-                 ).pack(side=tk.LEFT, fill=tk.Y)
+                 ).pack(side=tk.LEFT, fill=tk.BOTH)
         val = tk.Label(row, text="—", font=FT_CD, bg=SURFACE, fg=TEXT,
                        anchor="w", justify=tk.LEFT, padx=8, pady=4)
-        val.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        val.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         btn = tk.Button(row, textvariable=self.V("copy"), font=FT_SM, width=4,
                         bg=SURFACE2, fg=TEXT2, relief=tk.FLAT, bd=0,
-                        padx=6, pady=2, cursor="hand2")
-        btn.pack(side=tk.RIGHT, padx=(6, 8), pady=2)
+                        padx=6, pady=3, cursor="hand2")
+        btn.pack(side=tk.RIGHT, padx=(6, 8), pady=5)
         self._hoverable(btn, SURFACE2, BORDER)
         btn.config(command=lambda k=key, l=val, b=btn: self._copy_ip(k, l, b))
         val.bind("<Button-1>", lambda e, k=key, l=val, b=btn: self._copy_ip(k, l, b))
@@ -1177,9 +1210,36 @@ class App(tk.Tk):
         self._lbl_do.config(fg=ACCENT,
                             text=f"{r} · HEX {c:02X} · BIN {c:08b}")
 
+    def _lang_click(self, event) -> None:
+        target = "zh" if event.x < int(54 * self._scale) else "en"
+        if target != self.lang:
+            self.lang = target
+            self._draw_lang_slider()
+            self._refresh()
+
+    def _draw_lang_slider(self) -> None:
+        slider = getattr(self, "_lang_slider", None)
+        if slider is None:
+            return
+        s = self._scale
+        w, h = int(108 * s), int(34 * s)
+        pad = max(2, int(3 * s))
+        slider.delete("all")
+        _rounded_rect(slider, 0.5, 0.5, w - 0.5, h - 0.5,
+                      int(10 * s), fill=SURFACE2, outline=BORDER, width=1)
+        half = (w - 2 * pad) // 2
+        active = 0 if self.lang == "zh" else 1
+        x = pad + active * half
+        _rounded_rect(slider, x, pad, x + half, h - pad,
+                      int(8 * s), fill=ACCENT, outline="")
+        for i, label in enumerate(("中文", "EN")):
+            cx = pad + i * half + half // 2
+            slider.create_text(cx, h // 2, text=label, font=FT_SMB,
+                               fill=BG if i == active else TEXT2)
+
     def _switch_lang(self):
         self.lang = "en" if self.lang=="zh" else "zh"
-        self._btn_lang.config(text=LANG_LABEL[self.lang])
+        self._draw_lang_slider()
         self._refresh()
 
     def _refresh(self) -> None:
@@ -1190,7 +1250,7 @@ class App(tk.Tk):
         else:
             self._search()
         self._c2d(); self._d2c(); self._convert(); self._convert_ip()
-        self._status("")
+        self._status(self.t("ready"), transient=False)
         self.after(30, self._position_indicator)
 
     def _set_base(self, b):
@@ -1298,14 +1358,22 @@ class App(tk.Tk):
         """Keep the sign on negatives rather than using two's complement."""
         return format_value(v, base)
 
-    def _status(self, text: str) -> None:
+    def _status(self, text: str, transient: bool = True) -> None:
         if self._status_job is not None:
             try: self.after_cancel(self._status_job)
             except Exception: pass
             self._status_job = None
-        self._lbl_status.config(text=text)
-        if text:
-            self._status_job = self.after(1400, lambda: self._status(""))
+        if not text:
+            text = self.t("ready")
+            transient = False
+        color = ACCENT if transient else SUCCESS
+        self._lbl_status.config(text=text, fg=color)
+        dot = getattr(self, "_dot", None)
+        if dot is not None:
+            dot.itemconfigure(self._dot_id, fill=color)
+        if transient:
+            self._status_job = self.after(
+                1400, lambda: self._status(self.t("ready"), transient=False))
 
     def _copy(self, base: int, lbl: tk.Label) -> None:
         self._copy_text(self._vals.get(base, ""),
